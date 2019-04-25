@@ -5,6 +5,10 @@ import NavBar from '../NavBar';
 import HomePage from '../HomePage';
 import OrdersPage from '../OrdersPage';
 import ProductPage from '../ProductPage';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCaretRight, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faCaretRight, faCaretDown);
 
 export default class App extends PureComponent {
   render() {
