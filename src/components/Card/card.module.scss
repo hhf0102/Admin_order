@@ -1,0 +1,15 @@
+@import 'src/stylesheets/variables.scss';
+@import 'src/stylesheets/mixins.scss';
+
+.container {
+  background-color: $white;
+  box-shadow: 0 0 10px 5px $card-shadow;
+  border-radius: 3px;
+  height: 100%;
+  padding: 30px 40px;
+  box-sizing: border-box;
+
+  .title {
+    @include setFont('HelveticaNeue-Bold', 24px, $black);
+  }
+}
