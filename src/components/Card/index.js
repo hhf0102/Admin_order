@@ -19,7 +19,7 @@ export default class Card extends PureComponent {
 
     return (
       <div className={containerStyle}>
-        <div className={styles['title']}>{title}</div>
+        {title && <div className={styles['title']}>{title}</div>}
         {content}
       </div>
     );
