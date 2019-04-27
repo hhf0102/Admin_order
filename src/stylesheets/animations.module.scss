@@ -1,0 +1,22 @@
+@mixin fadeDisplay($display, $opacity) {
+  display: $display;
+  opacity: $opacity;
+}
+
+@keyframes fadeIn {
+  0% {
+    @include fadeDisplay(none, 0);
+  }
+
+  1% {
+    @include fadeDisplay(block, 0);
+  }
+
+  100% {
+    @include fadeDisplay(block, .98);
+  }
+}
+
+.fade-in {
+  animation: fadeIn .5s;
+}
