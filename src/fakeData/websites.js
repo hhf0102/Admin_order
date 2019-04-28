@@ -1,30 +1,47 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { rateNumber } from 'utils/formattedNumber';
+
+const viewsFacebook = 45836;
+const lastWeekViewsFacebook = 44937;
+
+const viewsGoogle = 23582;
+const lastWeekViewsGoogle = 20000;
+
+const viewShopify = 2489;
+const lastWeekViewsShopify = 2508;
+
+const viewWordpress = 1057;
+const lastWeekViewsWordpress = 1800;
 
 const websites = [
   {
     icon: <FontAwesomeIcon icon={["fab", "facebook"]} />,
     name: 'Facebook.com',
-    count: '45,836',
-    rate: <div style={{ color: '#7ED321' }}><FontAwesomeIcon icon="arrow-up" />20%</div>
+    views: viewsFacebook,
+    lastWeekViews: lastWeekViewsFacebook,
+    rate: rateNumber(viewsFacebook, lastWeekViewsFacebook),
   },
   {
     icon: <FontAwesomeIcon icon={["fab", "google"]} />,
     name: 'Google.com',
-    count: '23,582',
-    rate: <div style={{ color: '#7ED321' }}><FontAwesomeIcon icon="arrow-up" />12%</div>
+    views: viewsGoogle,
+    lastWeekViews: lastWeekViewsGoogle,
+    rate: rateNumber(viewsGoogle, lastWeekViewsGoogle),
   },
   {
     icon: <FontAwesomeIcon icon={["fab", "stripe-s"]} />,
     name: 'Shopify.com',
-    count: '2,489',
-    rate: <div style={{ color: '#D0021B' }}><FontAwesomeIcon icon="arrow-down" />15%</div>
+    views: viewShopify,
+    lastWeekViews: lastWeekViewsShopify,
+    rate: rateNumber(viewShopify, lastWeekViewsShopify),
   },
   {
     icon: <FontAwesomeIcon icon={["fab", "wordpress"]} />,
     name: 'Wordpress.com',
-    count: '1,057',
-    rate: <div style={{ color: '#D0021B' }}><FontAwesomeIcon icon="arrow-down" />30%</div>
+    views: viewWordpress,
+    lastWeekViews: lastWeekViewsWordpress,
+    rate: rateNumber(viewWordpress, lastWeekViewsWordpress),
   }
 ];
 

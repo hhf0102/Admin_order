@@ -134,7 +134,7 @@
       border: 0;
     }
 
-    > .icon {
+    > .icon-wrapper {
       flex: 1 1 20%;
       margin-right: 20px;
 
@@ -144,24 +144,65 @@
       }
     }
 
-    > .name {
+    > .name-wrapper {
       @include setFont('HelveticaNeue-Medium', 16px, $nav-bar-item);
       flex: 1 1 40%;
       margin-right: 62px;
     }
 
-    > .count {
+    > .views-wrapper {
       @include setFont('HelveticaNeue-Medium', 20px, $black);
       flex: 1 1 20%;
       margin-right: 20px;
       text-align: right;
     }
 
-    > .rate {
+    > .rate-wrapper {
       flex: 1 1 20%;
+      position: relative;
+      cursor: pointer;
+      display: flex;
 
-      > div {
+      &.down {
+        color: $card-content-two;
+      }
+
+      &.up {
+        color: $card-content-one;
+      }
+
+      > div:first-child {
         display: flex;
+      }
+
+      .tooltip-wrapper {
+        position: absolute;
+        bottom: 130%;
+        transform: translateX(-50%);
+        left: 45%;
+
+        &.hidden {
+          display: none;
+        }
+
+        .views-style {
+          white-space: nowrap;
+          margin-bottom: 8px;
+          
+          > :not(.views-count) {
+            color: $white;
+          }
+
+          .views-count {
+            @include setFont('HelveticaNeue-Bold', 20px, inherit);
+          }
+        }
+
+        .last-week-style {
+          @include setFont('HelveticaNeue-Italic', 14px, $nav-bar-item);
+          text-align: center;
+          white-space: nowrap;
+        }
       }
 
       svg {

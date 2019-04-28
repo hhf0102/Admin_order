@@ -1,0 +1,19 @@
+@import 'stylesheets/variables.module.scss';
+
+.container {
+  position: relative;
+  padding: 20px 16px;
+  border-radius: 3px;
+  background-color: #000;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: $black transparent transparent transparent;
+  }
+}
