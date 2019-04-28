@@ -44,13 +44,11 @@ export default class CustomDropdown extends PureComponent {
     });
   }
 
-  setListRef = (ref) => this.listRef = ref;
-
   render () {
     const { list } = this.props;
     return (
       <div className={styles['container']}>
-        <div className={styles['list-wrapper']} ref={this.setListRef}>
+        <div className={styles['list-wrapper']}>
           {list.map((item, idx) => {
             return (
               <div
