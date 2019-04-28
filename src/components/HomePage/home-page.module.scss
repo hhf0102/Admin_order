@@ -1,0 +1,239 @@
+@import 'stylesheets/variables.module.scss';
+@import 'stylesheets/mixins.module.scss';
+
+.container {
+  max-width: 960px;
+  margin: auto;
+}
+
+.title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 20px;
+
+  .title {
+    @include setFont('HelveticaNeue-Bold', 24px, $black);
+  }
+
+  .time-wrapper {
+    @include setFont('HelveticaNeue-Bold', 16px, $nav-bar-item);
+    display: flex;
+
+    .period-wrapper {
+      position: relative;
+      cursor: pointer;
+      margin-left: 15px;
+      user-select: none;
+
+      .period-dropdown {
+        position: absolute;
+        right: 0;
+        top: 25px;
+      }
+    }
+
+    .icon {
+      color: $black;
+      margin: 0 3px;
+    }
+  }
+}
+
+
+// revenue, cost and income ---------------------------------------------------
+
+.revenue-cost-income-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+
+  > div {
+    box-sizing: border-box;
+    flex: 1 0 30%;
+    height: 150px;
+    margin-right: 20px;
+
+    &:last-child {
+      margin: 0;
+    }
+
+    .card-title-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+
+      .icon-wrapper {
+        margin-right: 8px;
+      }
+
+      .card-title {
+        @include setFont('HelveticaNeue-Medium', 16px, $black);
+      }
+    }
+
+    .card-revenue-content,
+    .card-cost-content,
+    .card-income-content {
+      @include setFont('HelveticaNeue-Bold', 36px, $black);
+      text-align: center;
+    }
+
+    .card-revenue-content {
+      color: $card-content-one;
+    }
+
+    .card-cost-content {
+      color: $card-content-two;
+    }
+
+    .card-income-content {
+      color: $card-content-three;
+    }
+  }
+}
+
+// activity --------------------------------------------------------
+
+.card-activity {
+  height: 406px;
+  margin-bottom: 20px;
+}
+
+
+// transaction and orders ---------------------------------------------------
+
+.transaction-and-orders {
+  display: flex;
+
+  > div {
+    height: 456px;
+    flex: 1 1 460px;
+
+    &:nth-child(1) {
+      margin-right: 20px;
+    }
+  }
+}
+
+.transaction-content-wrapper {
+  margin-top: 30px;
+
+  .website-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 23px 0;
+    border-bottom: 1px solid $card-shadow;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+      border: 0;
+    }
+
+    > .icon {
+      flex: 1 1 20%;
+      margin-right: 20px;
+
+      svg {
+        min-width: 45px;
+        height: 45px;
+      }
+    }
+
+    > .name {
+      @include setFont('HelveticaNeue-Medium', 16px, $nav-bar-item);
+      flex: 1 1 40%;
+      margin-right: 62px;
+    }
+
+    > .count {
+      @include setFont('HelveticaNeue-Medium', 20px, $black);
+      flex: 1 1 20%;
+      margin-right: 20px;
+      text-align: right;
+    }
+
+    > .rate {
+      flex: 1 1 20%;
+
+      > div {
+        display: flex;
+      }
+
+      svg {
+        min-width: 18px;
+        height: 18px;
+        margin-right: 3px;
+      }
+    }
+  }
+}
+
+.latest-orders-content-wrapper {
+  margin-top: 30px;
+
+  .order-wrapper {
+    display: flex;
+    padding: 8px 0;
+    border-bottom: 1px solid $card-shadow;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    > img {
+      width: 100px;
+      height: 100px;
+    }
+
+    .content {
+      margin-left: 21px;
+      align-self: center;
+
+      .name {
+        @include setFont('HelveticaNeue-Bold', 20px, $black);
+        margin-bottom: 8px;
+      }
+
+      .date,
+      .buyer {
+        @include setFont('HelveticaNeue', 16px, $nav-bar-item);
+        display: flex;
+        align-items: center;
+
+        svg {
+          min-width: 12px;
+          height: 12px;
+          margin-right: 7px;
+          color: $icon-background;
+        }
+      }
+
+      .date {
+        margin-bottom: 8px;
+      }
+    }
+
+    .price {
+      @include setFont('HelveticaNeue-Bold', 20px, $black);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-end;
+      margin-left: auto;
+
+      > span {
+        font-size: 14px;
+      }
+    }
+  }
+}
