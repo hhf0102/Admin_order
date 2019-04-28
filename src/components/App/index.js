@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import styles from './app.module.scss';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import NavBar from '../NavBar';
-import HomePage from '../HomePage';
-import OrdersPage from '../OrdersPage';
-import ProductPage from '../ProductPage';
+import NavBar from 'components/NavBar';
+import HomePage from 'components/HomePage';
+import OrdersPage from 'components/OrdersPage';
+import ProductPage from 'components/ProductPage';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faCaretRight,

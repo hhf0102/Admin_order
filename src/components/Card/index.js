@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styles from './card.module.scss';
-import mapClassNameToArray from '../../utils/mapClassName';
+import mapClassNameToArray from 'utils/mapClassName';
 import cx from 'classnames';
 
 export default class Card extends PureComponent {

@@ -1,5 +1,5 @@
-@import 'src/stylesheets/variables.scss';
-@import 'src/stylesheets/mixins.scss';
+@import 'stylesheets/variables.module.scss';
+@import 'stylesheets/mixins.module.scss';
 
 .container {
   background-color: $white;
