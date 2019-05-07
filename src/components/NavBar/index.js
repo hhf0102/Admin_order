@@ -1,14 +1,16 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import styles from './nav-bar.module.scss';
 import cx from 'classnames';
 import { Link } from 'react-router-dom';
 
 export default class NavBar extends PureComponent {
-  constructor (props) {
-    super(props);
-    this.state = {
-      active: 0,
-    }
+  static propTypes = {
+    list: PropTypes.array,
+  }
+  
+  state = {
+    active: 0,
   }
 
   static defaultProps = {
@@ -37,11 +39,11 @@ export default class NavBar extends PureComponent {
     const { list } = this.props;
     return (
       <ul className={styles['list']}>
-        {list.map((item, idx) =>
+        {list.map((item, idx) => (
           <li key={idx} className={this.itemStyle(idx)} onClick={this.handleClick(idx)}>
             <Link to={`/${item}`}>{item.toUpperCase()}</Link>
           </li>
-        )}
+        ))}
       </ul>
     )
   }

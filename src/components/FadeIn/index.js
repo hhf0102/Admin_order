@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from 'stylesheets/animations.module.scss';
 
 const FadeIn = ({ tag: Tag, className, children }) => {
@@ -12,6 +13,12 @@ const FadeIn = ({ tag: Tag, className, children }) => {
 FadeIn.defaultProps = {
   tag: 'div',
   className: 'fade-in',
+}
+
+FadeIn.propTypes = {
+  tag: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.node,
 }
 
 export default FadeIn;

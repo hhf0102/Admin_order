@@ -46,7 +46,7 @@ export default class TransactionAndOrders extends PureComponent {
   getRateContent = (idx) => {
     const { views, lastWeekViews } = websites[idx];
     const viewsCount = views - lastWeekViews;
-    const increaseOrDecrease = viewsCount ? 'DECREASE' : 'INCREASE';
+    const increaseOrDecrease = viewsCount < 0 ? 'DECREASE' : 'INCREASE';
     return (
       <div>
         <div className={styles['views-style']}>
@@ -62,7 +62,7 @@ export default class TransactionAndOrders extends PureComponent {
     const { showRateTooltip } = this.state;
     return (
       <div className={styles['transaction-content-wrapper']}>
-        {websites.map((website, idx) =>
+        {websites.map((website, idx) => (
           <div key={idx} className={styles['website-wrapper']}>
             <div className={styles['icon-wrapper']}>{website.icon}</div>
             <div className={styles['name-wrapper']}>{website.name}</div>
@@ -75,12 +75,12 @@ export default class TransactionAndOrders extends PureComponent {
               <FontAwesomeIcon icon={this.getRateArrowIcon(idx)} />{website.rate}
               {showRateTooltip === idx &&
                 <div className={this.getTooltipStyles(idx)}>
-                  <Tooltip content={this.getRateContent(idx)}/>
+                  <Tooltip content={this.getRateContent(idx)} />
                 </ div>
               }
             </div>
           </div>
-        )}
+        ))}
       </div>
     );
   };
@@ -88,7 +88,7 @@ export default class TransactionAndOrders extends PureComponent {
   latestOrdersContent = () => {
     return (
       <div className={styles['latest-orders-content-wrapper']}>
-        {orders.map((order, idx) =>
+        {orders.map((order, idx) => (
           <div key={idx} className={styles['order-wrapper']}>
             <img src={order.image} alt="not found" />
             <div className={styles['content']}>
@@ -105,7 +105,7 @@ export default class TransactionAndOrders extends PureComponent {
               {order.price}
             </div>
           </div>
-        )}
+        ))}
       </div>
     );
   };

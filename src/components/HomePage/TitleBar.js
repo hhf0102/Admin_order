@@ -10,7 +10,7 @@ export default class TitleBar extends PureComponent {
     this.state = {
       showPeriodDropdown: false,
     }
-  }
+  }  
 
   renderTime = () => {
     const { showPeriodDropdown } = this.state;

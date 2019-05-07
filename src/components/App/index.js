@@ -16,6 +16,8 @@ import {
   faArrowDown,
   faClock,
   faMale,
+  faTags,
+  faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -39,6 +41,8 @@ library.add(
   faArrowDown,
   faClock,
   faMale,
+  faTags,
+  faPlus,
 );
 
 export default class App extends PureComponent {
@@ -55,6 +59,7 @@ export default class App extends PureComponent {
               <Redirect to="/home" />
             </Switch>
           </div>
+          <div className={styles['footer']} />
         </div>
       </BrowserRouter>
     );

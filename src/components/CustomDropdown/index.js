@@ -26,7 +26,7 @@ export default class CustomDropdown extends PureComponent {
     }
   }
 
-  handleClick = (idx) => () => this.props.dropdownClose();
+  handleClick = () => () => this.props.dropdownClose();
 
   handleMouseEnter = (idx) => () => {
     this.setState({
@@ -69,12 +69,14 @@ export default class CustomDropdown extends PureComponent {
 
 CustomDropdown.propTypes = {
   list: PropTypes.array,
-  inputRef: PropTypes.object,
+  inputRef: PropTypes.object.isRequired,
   dropdownClose: PropTypes.func,
+  checkbox: PropTypes.bool,
 }
 
 CustomDropdown.defaultProps = {
   list: ['ExampleA', 'ExampleB', 'ExampleC'],
   inputRef: null,
   dropdownClose: null,
+  checkbox: false,
 }
