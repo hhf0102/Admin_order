@@ -1,0 +1,57 @@
+@import 'stylesheets/variables.module.scss';
+@import 'stylesheets/mixins.module.scss';
+
+.container {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 8px 16px;
+  cursor: pointer;
+  border: 1px solid $black;
+  border-radius: 4px;
+  color: $white;
+  position: relative;
+  user-select: none;
+
+  > span {
+    @include setFont('HelveticaNeue-Bold', 14px, $white);
+    display: inline-block;
+    margin-right: 5px;
+  }
+
+  &.paid-style,
+  &.published-style {
+    background-color: $btn-paid;
+    border-color: $btn-paid;
+  }
+
+  &.unpaid-style,
+  &.unpublished-style {
+    background-color: $btn-unpaid;
+    border-color: $btn-unpaid;
+  }
+
+  &.shipping-style {
+    background-color: $btn-shipping;
+    border-color: $btn-shipping;
+  }
+
+  &.done-style {
+    background-color: $btn-done;
+    border-color: $btn-done;
+  }
+
+  &.add-product-style {
+    background-color: $black;
+    border-color: $black;
+  }
+}
+
+.dropdown-wrapper {
+  position: absolute;
+  z-index: 99999;
+  top: 105%;
+  left: 0;
+  width: 100%;
+}
