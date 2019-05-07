@@ -44,7 +44,47 @@
     }
   },
   "rules": {
-    "react/jsx-uses-react": "error",
-    "react/jsx-uses-vars": "error"
+    "react/prefer-es6-class":             "error",
+    "react/jsx-pascal-case":              "error",
+    "react/jsx-closing-bracket-location": "error",
+    "react/no-multi-comp": [ "warn",
+      { "ignoreStateless": true }
+    ],
+    "jsx-quotes":                         "error",
+    "react/jsx-space-before-closing":     "error",
+    "react/jsx-curly-spacing":            "error",
+    "react/jsx-boolean-value":            "warn",
+    "react/jsx-wrap-multilines":          "error",
+    "react/self-closing-comp":            "error",
+    "react/jsx-sort-props":               "off",
+    "react/jsx-key":                      "error",
+    "react/jsx-max-props-per-line": [ "warn",
+      { "maximum": 3
+      }
+    ],
+    "react/jsx-no-undef":                 "error",
+    "react/jsx-uses-react":               "error",
+    "react/jsx-uses-vars":                "error",
+    "react/jsx-indent": [ "error",
+      2
+    ],
+    "react/no-unused-prop-types":         "warn",
+    "react/no-deprecated":                "warn",
+    "react/forbid-prop-types":            "warn",
+    "react/prop-types":                   "warn",
+    "react/require-default-props":        "warn",
+    "react/default-props-match-prop-types": "warn",
+    "react/no-unused-state":                "warn",
+    "react/no-typos":                       "warn",
+    "react/no-string-refs":                 "warn",
+    "react/no-unescaped-entities":          "warn",
+    "react/no-this-in-sfc":                 "warn",
+    "react/no-unknown-property":            "warn",
+    "react/style-prop-object":              "warn",
+    "react/react-in-jsx-scope":             "warn",
+    "react/button-has-type":                "warn",
+    "react/display-name":                   "warn",
+    "react/jsx-no-target-blank":            "warn",
+    "react/jsx-no-duplicate-props":         "warn"
   }
 }
