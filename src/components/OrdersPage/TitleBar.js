@@ -19,6 +19,8 @@ export default class TitleBar extends PureComponent {
     selectStatusDropdownClose: PropTypes.func,
     handleClickEditSection: PropTypes.func,
     editSectionDropdown: PropTypes.bool,
+    isAllChecked: PropTypes.bool,
+    handleChangeAllChecked: PropTypes.func,
   }
   
   setItemStatusRef = (ref) => this.itemStatusRef = ref;
@@ -95,9 +97,19 @@ export default class TitleBar extends PureComponent {
   }
 
   render () {
+    const {
+      isAllChecked,
+      handleChangeAllChecked,
+    } = this.props;
+
     return (
       <div className={styles['title-wrapper']}>
-        <div className={styles['checkbox-wrapper']}><Checkbox /></div>
+        <div className={styles['checkbox-wrapper']}>
+          <Checkbox
+            isChecked={isAllChecked}
+            handleChange={handleChangeAllChecked(isAllChecked)}
+          />
+        </div>
         {this.renderArrow()}
         {this.renderTag()}
         {this.renderEdit()}

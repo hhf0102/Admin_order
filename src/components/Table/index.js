@@ -9,10 +9,16 @@ export default class Table extends PureComponent {
   static propTypes = {
     headList: PropTypes.array,
     bodyList: PropTypes.array,
+    handleChangeChecked: PropTypes.func,
   }
   
   render () {
-    const { headList, bodyList } = this.props;
+    const {
+      headList,
+      bodyList,
+      handleChangeChecked
+    } = this.props;
+
     return (
       <table>
         <thead>
@@ -24,7 +30,10 @@ export default class Table extends PureComponent {
           {bodyList.map((body, idx) => (
             <tr key={idx}>
               <td className={styles['customer']}>
-                <Checkbox /> {body.customer}
+                <Checkbox
+                  isChecked={body.isChecked}
+                  handleChange={handleChangeChecked(body.id)}
+                /> {body.customer}
               </td>
               <td>
                 {body.productList.map((product, idx) => (
