@@ -1,39 +1,25 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './checkbox.module.scss';
 
-export default class Checkbox extends PureComponent {
-  static propTypes = {
-    label: PropTypes.string,
-  }
+const Checkbox = ({ label, isChecked, handleChange  }) => (
+  <label>
+    <label className={styles["container"]}>
+      <input
+        type="checkbox"
+        checked={isChecked}
+        onChange={handleChange}
+      />
+      <i />
+    </label>
+    {label && <span>{label}</span>}
+  </label>
+);
 
-  static defaultProps = {
-    customFunction: () => {},
-  }
-
-  state = {
-    isChecked: false,
-  }
-
-  handleChange = () => {
-    this.setState((prevState) => ({ isChecked: !prevState.isChecked }));
-  }
-
-  render () {
-    const { label } = this.props;
-    const { isChecked } = this.state;
-    return (
-      <label>
-        <label className={styles["container"]}>
-          <input
-            type="checkbox"
-            checked={isChecked}
-            onChange={this.handleChange}
-          />
-          <i />
-        </label>
-        {label && <span>{label}</span>}
-      </label>
-    );
-  }
+Checkbox.propTypes = {
+  label: PropTypes.string,
+  isChecked: PropTypes.bool.isRequired,
+  handleChange: PropTypes.func.isRequired,
 }
+
+export default Checkbox;
