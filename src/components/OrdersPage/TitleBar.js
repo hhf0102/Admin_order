@@ -4,8 +4,8 @@ import styles from './orders-page.module.scss';
 import Checkbox from 'components/Checkbox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CustomDropdown from 'components/CustomDropdown';
-import selectStatus from 'fakeData/selectStatus';
-import itemStatus from 'fakeData/itemStatus';
+import { selectArrowStatusOrdersPage } from 'fakeData/selectStatus';
+import { itemStatus } from 'fakeData/itemStatus';
 import editSection from 'fakeData/editSection';
 import Card from 'components/Card';
 
@@ -22,22 +22,39 @@ export default class TitleBar extends PureComponent {
     isAllChecked: PropTypes.bool,
     handleChangeAllChecked: PropTypes.func,
   }
+
+  state = {
+    itemStatusDropdown: false,
+    selectStatusDropdown: false,
+    editSectionDropdown: false,
+  };
+
+  handleClickItemStatus = () => this.setState({ itemStatusDropdown: !this.state.itemStatusDropdown });
+  handleClickSelectStatus = () => this.setState({ selectStatusDropdown: !this.state.selectStatusDropdown });
+  handleClickEditSection = () => this.setState({ editSectionDropdown: !this.state.editSectionDropdown });
+
+  itemStatusDropdownClose = () => this.setState(() => ({ itemStatusDropdown: false }));
+  selectStatusDropdownClose = () => this.setState(() => ({ selectStatusDropdown: false }));
+
   
   setItemStatusRef = (ref) => this.itemStatusRef = ref;
   setSelectStatusRef = (ref) => this.selectStatusRef = ref;
   setEditSectionRef = (ref) => this.editSectionRef = ref;
 
   renderArrow = () => {
-    const { handleClickItemStatus, itemStatusDropdown, itemStatusDropdownClose } = this.props;
+    const { handleSelectArrow } = this.props;
+    const { itemStatusDropdown } = this.state;
+
     return (
-      <div className={styles['arrow-wrapper']} onClick={handleClickItemStatus} ref={this.setItemStatusRef}>
+      <div className={styles['arrow-wrapper']} onClick={this.handleClickItemStatus} ref={this.setItemStatusRef}>
         <FontAwesomeIcon icon="caret-down" />
         { itemStatusDropdown &&
           <div className={styles['dropdown-wrapper']}>
             <CustomDropdown
-              list={selectStatus}
+              list={selectArrowStatusOrdersPage}
               inputRef={this.itemStatusRef}
-              dropdownClose={itemStatusDropdownClose}
+              dropdownClose={this.itemStatusDropdownClose}
+              handleSelect={handleSelectArrow}
             />
           </div>
         }
@@ -46,16 +63,18 @@ export default class TitleBar extends PureComponent {
   };
 
   renderTag = () => {
-    const { handleClickSelectStatus, selectStatusDropdown, selectStatusDropdownClose } = this.props;
+    const { handleChangeStatus } = this.props;
+    const { selectStatusDropdown } = this.state;
     return (
-      <div className={styles['tag-wrapper']} onClick={handleClickSelectStatus} ref={this.setSelectStatusRef}>
+      <div className={styles['tag-wrapper']} onClick={this.handleClickSelectStatus} ref={this.setSelectStatusRef}>
         <FontAwesomeIcon icon="tags" />
         { selectStatusDropdown &&
           <div className={styles['dropdown-wrapper']}>
             <CustomDropdown
               list={itemStatus}
               inputRef={this.selectStatusRef}
-              dropdownClose={selectStatusDropdownClose}
+              dropdownClose={this.selectStatusDropdownClose}
+              handleSelect={handleChangeStatus}
             />
           </div>
         }
@@ -68,7 +87,9 @@ export default class TitleBar extends PureComponent {
       <div>
         {editSection.map((item, idx) => (
           <div key={idx} className={styles['item-wrapper']}>
-            <Checkbox label={item} />
+            <Checkbox
+              label={item}
+            />
           </div>
         ))}
       </div>
@@ -78,12 +99,12 @@ export default class TitleBar extends PureComponent {
   handle = (e) => {
     const nodeName = e.target.nodeName;
     if (e.target.textContent.includes('EDIT') || nodeName.includes('svg') || nodeName.includes('path')) {
-      this.props.handleClickEditSection();
+      this.handleClickEditSection();
     }
   }
 
   renderEdit = () => {
-    const { editSectionDropdown } = this.props;
+    const { editSectionDropdown } = this.state;
     return (
       <div className={styles['edit-wrapper']} onClick={this.handle} ref={this.setEditSectionRef}>
         <span>EDIT SECTION</span> <FontAwesomeIcon icon="caret-down" />

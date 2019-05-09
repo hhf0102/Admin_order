@@ -91,9 +91,13 @@ const initState = {
 
 export const CLICK_ALL_CHECKED = 'CLICK_ALL_CHECKED';
 export const CLICK_CHECKED = 'CLICK_CHECKED';
+export const SELECT_ARROW_OPTION = 'SELECT_ARROW_OPTION';
+export const CHANGE_STATUS = 'CHANGE_STATUS';
 
 export const clickAllChecked = createActionCreator(CLICK_ALL_CHECKED);
 export const clickChecked = createActionCreator(CLICK_CHECKED);
+export const selectArrowOption = createActionCreator(SELECT_ARROW_OPTION);
+export const changeStatus = createActionCreator(CHANGE_STATUS);
 
 export default (state = initState, action) => {
   switch (action.type) {
@@ -119,8 +123,35 @@ export default (state = initState, action) => {
           return order;
         })
       ]
-    }
-      
-    default:  return state;
+    };
+    case SELECT_ARROW_OPTION: return {
+      ...state,
+      ordersDetails: [
+        ...state.ordersDetails.map((order) => {
+          if (action.payload.toLowerCase() === order.status) {
+            order.isChecked = true;
+          } else if (action.payload.toLowerCase() === 'select all') {
+            order.isChecked = true;
+          } else if (action.payload.toLowerCase() === 'unselect all') {
+            order.isChecked = false;
+          } else {
+            order.isChecked = false;
+          }
+          return order;
+        })
+      ]
+    };
+    case CHANGE_STATUS: return {
+      ...state,
+      ordersDetails: [
+        ...state.ordersDetails.map((order) => {
+          if (order.isChecked) {
+            order.status = action.payload.toLowerCase();
+          }
+          return order;
+        })
+      ]
+    };
+    default: return state;
   }
 };

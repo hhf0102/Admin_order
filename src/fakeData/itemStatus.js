@@ -1,4 +1,4 @@
-const itemStatus = [
+export const itemStatus = [
   'Change Status to...',
   'Paid',
   'Unpaid',
@@ -13,5 +13,3 @@ export const itemStatusProductPage = [
 ];
 
 export const btnItemStatus = itemStatus.filter((item) => item !== 'Change Status to...');
-
-export default itemStatus;

@@ -4,11 +4,8 @@ import styles from './custom-dropdown.module.scss';
 import cx from 'classnames';
 
 export default class CustomDropdown extends PureComponent {
-  constructor (props) {
-    super(props);
-    this.state = {
-      mouseEnterIndex: -1,
-    }
+  state = {
+    mouseEnterIndex: -1,
   }
 
   componentDidMount () {
@@ -25,8 +22,6 @@ export default class CustomDropdown extends PureComponent {
       dropdownClose();
     }
   }
-
-  handleClick = () => () => this.props.dropdownClose();
 
   handleMouseEnter = (idx) => () => {
     this.setState({
@@ -45,7 +40,7 @@ export default class CustomDropdown extends PureComponent {
   }
 
   render () {
-    const { list } = this.props;
+    const { list, handleSelect } = this.props;
     return (
       <div className={styles['container']}>
         <div className={styles['list-wrapper']}>
@@ -54,7 +49,7 @@ export default class CustomDropdown extends PureComponent {
               <div
                 key={idx}
                 className={this.getItemStyle(idx)}
-                onClick={this.handleClick(idx)}
+                onClick={handleSelect(item)}
                 onMouseEnter={this.handleMouseEnter(idx)}
               >
                 {item}
@@ -71,12 +66,10 @@ CustomDropdown.propTypes = {
   list: PropTypes.array,
   inputRef: PropTypes.object.isRequired,
   dropdownClose: PropTypes.func,
-  checkbox: PropTypes.bool,
+  handleSelect: PropTypes.func,
 }
 
 CustomDropdown.defaultProps = {
-  list: ['ExampleA', 'ExampleB', 'ExampleC'],
-  inputRef: null,
-  dropdownClose: null,
-  checkbox: false,
+  handleSelect: () => {},
 }
+

@@ -73,3 +73,74 @@
 .table-wrapper {
   width: 100%;
 }
+
+table {
+  width: 100%;
+  border-spacing: 0;
+
+  thead {
+    background-color: $white;
+    white-space: nowrap;
+
+    th {
+      padding: 10px;
+      text-align: left;
+    }
+  }
+
+  tbody {
+    @include setFont('HelveticaNeue', 14px, $black);
+    line-height: 21px;
+
+    tr {
+      &:nth-child(even) {
+        background-color: $card-shadow;
+      }
+
+      .customer {
+        display: flex;
+
+        > label {
+          margin-right: 5px;
+        }
+      }
+
+      .add-to-cart,
+      .check-out {
+        width: 90px;
+      }
+
+      .address {
+        width: 135px;
+      }
+
+      .product-list {
+        padding: 5px 0;
+        border-bottom: 1px solid $white;
+
+        &:first-child {
+          padding-top: 0;
+        }
+
+        &:last-child {
+          padding-bottom: 0;
+          border-bottom: 0;
+        }
+
+        > div:last-child {
+          display: flex;
+          justify-content: space-between;
+
+          > span:first-child {
+            color: $nav-bar-item;
+          }
+        }
+      }
+
+      > td {
+        padding: 20px 16px;
+        vertical-align: top;
+      }
+    }
+  }
+}

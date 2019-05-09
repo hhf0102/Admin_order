@@ -1,4 +1,4 @@
-const selectStatus = [
+export const selectArrowStatusOrdersPage = [
   'Select All',
   'Unselect All',
   'Paid',
@@ -13,5 +13,3 @@ export const selectStatusProductPage = [
   'Published',
   'Unpublished',
 ];
-
-export default selectStatus;
