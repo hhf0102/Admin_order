@@ -11,16 +11,10 @@ import Card from 'components/Card';
 
 export default class TitleBar extends PureComponent {
   static propTypes = {
-    handleClickItemStatus: PropTypes.func,
-    itemStatusDropdown: PropTypes.bool,
-    itemStatusDropdownClose: PropTypes.func,
-    handleClickSelectStatus: PropTypes.func,
-    selectStatusDropdown: PropTypes.bool,
-    selectStatusDropdownClose: PropTypes.func,
-    handleClickEditSection: PropTypes.func,
-    editSectionDropdown: PropTypes.bool,
     isAllChecked: PropTypes.bool,
     handleChangeAllChecked: PropTypes.func,
+    handleSelectArrow: PropTypes.func,
+    handleChangeStatus: PropTypes.func,
   }
 
   state = {
@@ -40,6 +34,7 @@ export default class TitleBar extends PureComponent {
   setItemStatusRef = (ref) => this.itemStatusRef = ref;
   setSelectStatusRef = (ref) => this.selectStatusRef = ref;
   setEditSectionRef = (ref) => this.editSectionRef = ref;
+
 
   renderArrow = () => {
     const { handleSelectArrow } = this.props;
@@ -66,7 +61,11 @@ export default class TitleBar extends PureComponent {
     const { handleChangeStatus } = this.props;
     const { selectStatusDropdown } = this.state;
     return (
-      <div className={styles['tag-wrapper']} onClick={this.handleClickSelectStatus} ref={this.setSelectStatusRef}>
+      <div
+        className={styles['tag-wrapper']}
+        onClick={this.handleClickSelectStatus}
+        ref={this.setSelectStatusRef}
+      >
         <FontAwesomeIcon icon="tags" />
         { selectStatusDropdown &&
           <div className={styles['dropdown-wrapper']}>

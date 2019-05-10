@@ -76,7 +76,7 @@ export default class TransactionAndOrders extends PureComponent {
               {showRateTooltip === idx &&
                 <div className={this.getTooltipStyles(idx)}>
                   <Tooltip content={this.getRateContent(idx)} />
-                </ div>
+                </div>
               }
             </div>
           </div>

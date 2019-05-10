@@ -13,6 +13,7 @@ export default class ProductPage extends PureComponent {
       handleChangeChecked,
       handleSelectArrow,
       handleChangeStatus,
+      handleBtnStatus,
     } = this.props;
 
     const tableHeadList = [
@@ -38,6 +39,7 @@ export default class ProductPage extends PureComponent {
             headList={tableHeadList}
             bodyList={tableBodyList}
             handleChangeChecked={handleChangeChecked}
+            handleBtnStatus={handleBtnStatus}
           />
         </div>
       </FadeIn>

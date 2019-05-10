@@ -11,6 +11,9 @@ export default class OrdersPage extends PureComponent {
     isAllChecked: PropTypes.bool,
     handleChangeAllChecked: PropTypes.func,
     handleChangeChecked: PropTypes.func,
+    handleSelectArrow: PropTypes.func,
+    handleChangeStatus: PropTypes.func,
+    handleBtnStatus: PropTypes.func,
   }
 
   render () {
@@ -21,6 +24,7 @@ export default class OrdersPage extends PureComponent {
       handleChangeChecked,
       handleSelectArrow,
       handleChangeStatus,
+      handleBtnStatus,
     } = this.props;
 
     const tableHeadList = [
@@ -47,6 +51,7 @@ export default class OrdersPage extends PureComponent {
               headList={tableHeadList}
               bodyList={tableBodyList}
               handleChangeChecked={handleChangeChecked}
+              handleBtnStatus={handleBtnStatus}
             />
           </div>
         </div>

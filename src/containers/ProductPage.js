@@ -6,6 +6,7 @@ import {
   clickChecked,
   selectArrowOption,
   changeStatus,
+  changeBtnStatus,
 } from 'reducers/products';
 
 const mapStateToProps = (state) => {
@@ -20,7 +21,8 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeAllChecked: (status) => () => dispatch(clickAllChecked(status)),
     handleChangeChecked: (id) => () => dispatch(clickChecked(id)),
     handleSelectArrow: (checked) => () => dispatch(selectArrowOption(checked)),
-    handleChangeStatus: (status) => () => dispatch(changeStatus(status))
+    handleChangeStatus: (status) => () => dispatch(changeStatus(status)),
+    handleBtnStatus: (status) => () => dispatch(changeBtnStatus(status)),
   }
 }
 

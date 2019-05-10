@@ -40,7 +40,7 @@ export default class CustomDropdown extends PureComponent {
   }
 
   render () {
-    const { list, handleSelect } = this.props;
+    const { list, handleSelect, objectId } = this.props;
     return (
       <div className={styles['container']}>
         <div className={styles['list-wrapper']}>
@@ -49,7 +49,7 @@ export default class CustomDropdown extends PureComponent {
               <div
                 key={idx}
                 className={this.getItemStyle(idx)}
-                onClick={handleSelect(item)}
+                onClick={handleSelect({item, objectId})}
                 onMouseEnter={this.handleMouseEnter(idx)}
               >
                 {item}
@@ -63,10 +63,11 @@ export default class CustomDropdown extends PureComponent {
 }
 
 CustomDropdown.propTypes = {
-  list: PropTypes.array,
+  list: PropTypes.array.isRequired,
   inputRef: PropTypes.object.isRequired,
   dropdownClose: PropTypes.func,
   handleSelect: PropTypes.func,
+  objectId: PropTypes.number,
 }
 
 CustomDropdown.defaultProps = {

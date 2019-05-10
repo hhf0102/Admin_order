@@ -89,11 +89,13 @@ export const CLICK_ALL_CHECKED_PRODUCTS = 'CLICK_ALL_CHECKED_PRODUCTS';
 export const CLICK_CHECKED_PRODUCT = 'CLICK_CHECKED_PRODUCT';
 export const SELECT_ARROW_OPTION_PRODUCTS = 'SELECT_ARROW_OPTION_PRODUCTS';
 export const CHANGE_STATUS_PRODUCTS = 'CHANGE_STATUS_PRODUCTS';
+export const CHANGE_BTN_STATUS_PRODUCT = 'CHANGE_BTN_STATUS_PRODUCT';
 
 export const clickAllChecked = createActionCreator(CLICK_ALL_CHECKED_PRODUCTS);
 export const clickChecked = createActionCreator(CLICK_CHECKED_PRODUCT);
 export const selectArrowOption = createActionCreator(SELECT_ARROW_OPTION_PRODUCTS);
 export const changeStatus = createActionCreator(CHANGE_STATUS_PRODUCTS);
+export const changeBtnStatus = createActionCreator(CHANGE_BTN_STATUS_PRODUCT);
 
 
 export default (state = initState, action) => {
@@ -123,14 +125,14 @@ export default (state = initState, action) => {
     };
     case SELECT_ARROW_OPTION_PRODUCTS: return {
       ...state,
-      titleBarCheckBoxStatus: action.payload.toLowerCase() === 'select all' && true,
+      titleBarCheckBoxStatus: action.payload.item.toLowerCase() === 'select all' && true,
       productsDetails: [
         ...state.productsDetails.map((product) => {
-          if (action.payload.toLowerCase() === product.status) {
+          if (action.payload.item.toLowerCase() === product.status) {
             product.isChecked = true;
-          } else if (action.payload.toLowerCase() === 'select all') {
+          } else if (action.payload.item.toLowerCase() === 'select all') {
             product.isChecked = true;
-          } else if (action.payload.toLowerCase() === 'unselect all') {
+          } else if (action.payload.item.toLowerCase() === 'unselect all') {
             product.isChecked = false;
           } else {
             product.isChecked = false;
@@ -144,7 +146,18 @@ export default (state = initState, action) => {
       productsDetails: [
         ...state.productsDetails.map((product) => {
           if (product.isChecked) {
-            product.status = action.payload.toLowerCase();
+            product.status = action.payload.item.toLowerCase();
+          }
+          return product;
+        })
+      ]
+    };
+    case CHANGE_BTN_STATUS_PRODUCT: return {
+      ...state,
+      productsDetails: [
+        ...state.productsDetails.map((product) => {
+          if (product.id === action.payload.objectId) {
+            product.status = action.payload.item.toLowerCase();
           }
           return product;
         })

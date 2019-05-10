@@ -91,13 +91,15 @@ const initState = {
 
 export const CLICK_ALL_CHECKED_ORDERS = 'CLICK_ALL_CHECKED_ORDERS';
 export const CLICK_CHECKED_ORDER = 'CLICK_CHECKED_ORDER';
-export const SELECT_ARROW_OPTION = 'SELECT_ARROW_OPTION';
-export const CHANGE_STATUS = 'CHANGE_STATUS';
+export const SELECT_ARROW_OPTION_ORDER = 'SELECT_ARROW_OPTION_ORDER';
+export const CHANGE_STATUS_ORDER = 'CHANGE_STATUS_ORDER';
+export const CHANGE_BTN_STATUS_ORDER = 'CHANGE_BTN_STATUS_ORDER';
 
 export const clickAllChecked = createActionCreator(CLICK_ALL_CHECKED_ORDERS);
 export const clickChecked = createActionCreator(CLICK_CHECKED_ORDER);
-export const selectArrowOption = createActionCreator(SELECT_ARROW_OPTION);
-export const changeStatus = createActionCreator(CHANGE_STATUS);
+export const selectArrowOption = createActionCreator(SELECT_ARROW_OPTION_ORDER);
+export const changeStatus = createActionCreator(CHANGE_STATUS_ORDER);
+export const changeBtnStatus = createActionCreator(CHANGE_BTN_STATUS_ORDER);
 
 export default (state = initState, action) => {
   switch (action.type) {
@@ -124,16 +126,16 @@ export default (state = initState, action) => {
         })
       ]
     };
-    case SELECT_ARROW_OPTION: return {
+    case SELECT_ARROW_OPTION_ORDER: return {
       ...state,
-      titleBarCheckBoxStatus: action.payload.toLowerCase() === 'select all' && true,
+      titleBarCheckBoxStatus: action.payload.item.toLowerCase() === 'select all' && true,
       ordersDetails: [
         ...state.ordersDetails.map((order) => {
-          if (action.payload.toLowerCase() === order.status) {
+          if (action.payload.item.toLowerCase() === order.status) {
             order.isChecked = true;
-          } else if (action.payload.toLowerCase() === 'select all') {
+          } else if (action.payload.item.toLowerCase() === 'select all') {
             order.isChecked = true;
-          } else if (action.payload.toLowerCase() === 'unselect all') {
+          } else if (action.payload.item.toLowerCase() === 'unselect all') {
             order.isChecked = false;
           } else {
             order.isChecked = false;
@@ -142,12 +144,23 @@ export default (state = initState, action) => {
         })
       ]
     };
-    case CHANGE_STATUS: return {
+    case CHANGE_STATUS_ORDER: return {
       ...state,
       ordersDetails: [
         ...state.ordersDetails.map((order) => {
           if (order.isChecked) {
-            order.status = action.payload.toLowerCase();
+            order.status = action.payload.item.toLowerCase();
+          }
+          return order;
+        })
+      ]
+    };
+    case CHANGE_BTN_STATUS_ORDER: return {
+      ...state,
+      ordersDetails: [
+        ...state.ordersDetails.map((order) => {
+          if (order.id === action.payload.objectId) {
+            order.status = action.payload.item.toLowerCase();
           }
           return order;
         })

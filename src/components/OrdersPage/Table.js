@@ -4,19 +4,23 @@ import Checkbox from 'components/Checkbox';
 import styles from './orders-page.module.scss';
 import { thousandComma } from 'utils/formattedNumber';
 import Button from 'components/Button';
+import { btnItemStatus as btnDropdownList } from 'fakeData/itemStatus';
+
 
 export default class Table extends PureComponent {
   static propTypes = {
     headList: PropTypes.array,
     bodyList: PropTypes.array,
     handleChangeChecked: PropTypes.func,
+    handleBtnStatus: PropTypes.func,
   }
   
   render () {
     const {
       headList,
       bodyList,
-      handleChangeChecked
+      handleChangeChecked,
+      handleBtnStatus,
     } = this.props;
 
     return (
@@ -54,6 +58,9 @@ export default class Table extends PureComponent {
                 <Button
                   btnText={body.status}
                   dropdown
+                  handleDropdownStatus={handleBtnStatus}
+                  objectId={body.id}
+                  btnDropdownList={btnDropdownList}
                 />
               </td>
             </tr>

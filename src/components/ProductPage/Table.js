@@ -3,6 +3,7 @@ import Checkbox from 'components/Checkbox';
 import styles from './product-page.module.scss';
 import { thousandComma } from 'utils/formattedNumber';
 import Button from 'components/Button';
+import { btnDropdownStatusProductPage as btnDropdownList } from 'fakeData/itemStatus';
 
 export default class Table extends PureComponent {
   renderThead = () => {
@@ -22,6 +23,7 @@ export default class Table extends PureComponent {
     const { 
       bodyList,
       handleChangeChecked,
+      handleBtnStatus,
     } = this.props;
 
     return (
@@ -55,7 +57,13 @@ export default class Table extends PureComponent {
             </td>
             <td className={styles['status']}>
               <div className={styles['btn-wrapper']}>
-                <Button btnText={status} dropdown />
+                <Button
+                  btnText={status}
+                  dropdown
+                  btnDropdownList={btnDropdownList}
+                  handleDropdownStatus={handleBtnStatus}
+                  objectId={id}
+                />
               </div>
             </td>
           </tr>

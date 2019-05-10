@@ -13,3 +13,4 @@ export const itemStatusProductPage = [
 ];
 
 export const btnItemStatus = itemStatus.filter((item) => item !== 'Change Status to...');
+export const btnDropdownStatusProductPage = itemStatusProductPage.filter((item) => item !== 'Change Status to...');

@@ -4,14 +4,14 @@ import styles from './button.module.scss';
 import cx from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CustomDropdown from 'components/CustomDropdown';
-import { btnItemStatus } from 'fakeData/itemStatus';
-
 
 export default class Button extends PureComponent {
   static propTypes = {
-    btnText: PropTypes.string,
+    btnText: PropTypes.string.isRequired,
     dropdown: PropTypes.bool,
     addItem: PropTypes.bool,
+    handleDropdownStatus: PropTypes.func,
+    objectId: PropTypes.number,
   }
   
   state = {
@@ -41,7 +41,14 @@ export default class Button extends PureComponent {
   dropdownClose = () => this.setState(() => ({ showDropdown: false }));
 
   render () {
-    const { btnText, dropdown, addItem } = this.props;
+    const {
+      btnText,
+      dropdown,
+      addItem,
+      handleDropdownStatus,
+      objectId,
+      btnDropdownList,
+    } = this.props;
     const { showDropdown } = this.state;
     return (
       <div className={this.getBtnStyle()} onClick={this.handleClickBtn} ref={this.setBtnRef}>
@@ -50,9 +57,11 @@ export default class Button extends PureComponent {
         {dropdown && showDropdown && 
           <div className={styles['dropdown-wrapper']}>
             <CustomDropdown
-              list={btnItemStatus}
+              list={btnDropdownList}
               inputRef={this.btnRef}
-              dropdownClose={this.dropdownClose} 
+              dropdownClose={this.dropdownClose}
+              handleSelect={handleDropdownStatus}
+              objectId={objectId}
             />
           </div>
         }
