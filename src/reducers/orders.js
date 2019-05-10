@@ -89,19 +89,19 @@ const initState = {
   ],
 };
 
-export const CLICK_ALL_CHECKED = 'CLICK_ALL_CHECKED';
-export const CLICK_CHECKED = 'CLICK_CHECKED';
+export const CLICK_ALL_CHECKED_ORDERS = 'CLICK_ALL_CHECKED_ORDERS';
+export const CLICK_CHECKED_ORDER = 'CLICK_CHECKED_ORDER';
 export const SELECT_ARROW_OPTION = 'SELECT_ARROW_OPTION';
 export const CHANGE_STATUS = 'CHANGE_STATUS';
 
-export const clickAllChecked = createActionCreator(CLICK_ALL_CHECKED);
-export const clickChecked = createActionCreator(CLICK_CHECKED);
+export const clickAllChecked = createActionCreator(CLICK_ALL_CHECKED_ORDERS);
+export const clickChecked = createActionCreator(CLICK_CHECKED_ORDER);
 export const selectArrowOption = createActionCreator(SELECT_ARROW_OPTION);
 export const changeStatus = createActionCreator(CHANGE_STATUS);
 
 export default (state = initState, action) => {
   switch (action.type) {
-    case CLICK_ALL_CHECKED: return {
+    case CLICK_ALL_CHECKED_ORDERS: return {
       ...state,
       titleBarCheckBoxStatus: !action.payload,
       ordersDetails: [
@@ -113,7 +113,7 @@ export default (state = initState, action) => {
         })
       ]
     };
-    case CLICK_CHECKED: return {
+    case CLICK_CHECKED_ORDER: return {
       ...state,
       ordersDetails: [
         ...state.ordersDetails.map((order) => {
@@ -126,6 +126,7 @@ export default (state = initState, action) => {
     };
     case SELECT_ARROW_OPTION: return {
       ...state,
+      titleBarCheckBoxStatus: action.payload.toLowerCase() === 'select all' && true,
       ordersDetails: [
         ...state.ordersDetails.map((order) => {
           if (action.payload.toLowerCase() === order.status) {

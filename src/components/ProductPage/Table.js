@@ -3,21 +3,10 @@ import Checkbox from 'components/Checkbox';
 import styles from './product-page.module.scss';
 import { thousandComma } from 'utils/formattedNumber';
 import Button from 'components/Button';
-import { headList, bodyList } from 'fakeData/productPageFakeData';
 
 export default class Table extends PureComponent {
-  constructor (props) {
-    super(props);
-    this.state = {
-      itemList: [
-        { checked: false },
-        { checked: true },
-        { checked: false },
-      ],
-    }
-  }
-
   renderThead = () => {
+    const { headList } = this.props;
     return (
       <thead>
         <tr>
@@ -30,12 +19,20 @@ export default class Table extends PureComponent {
   }
 
   renderTbody = () => {
+    const { 
+      bodyList,
+      handleChangeChecked,
+    } = this.props;
+
     return (
       <tbody>
-        {bodyList.map(({ productImage, name, original, discount, information, status }, idx) => (
+        {bodyList.map(({ id, productImage, name, original, discount, information, status, isChecked }, idx) => (
           <tr key={idx}>
             <td className={styles['product']}>
-              <Checkbox />
+              <Checkbox
+                isChecked={isChecked}
+                handleChange={handleChangeChecked(id)}
+              />
               <img src={productImage} alt="not found" />
               {name}
             </td>

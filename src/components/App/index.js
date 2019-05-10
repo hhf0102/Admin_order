@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import NavBar from 'components/NavBar';
 import HomePage from 'components/HomePage';
 import OrdersPage from 'containers/OrdersPage';
-import ProductPage from 'components/ProductPage';
+import ProductPage from 'containers/ProductPage';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faCaretRight,

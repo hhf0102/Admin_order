@@ -28,24 +28,33 @@ export default class TitleBar extends PureComponent {
   setTagRef = (ref) => this.selectStatusRef = ref;
 
   renderCheckbox = () => {
+    const {
+      isAllChecked,
+      handleChangeAllChecked,
+    } = this.props;
     return (
       <div className={styles["checkbox-wrapper"]}>
-        <Checkbox customFunction={this.props.handleAllChecked} />
+        <Checkbox
+          isChecked={isAllChecked}
+          handleChange={handleChangeAllChecked(isAllChecked)}
+        />
       </div>
     );
   }
 
   renderArrow = () => {
+    const { handleSelectArrow } = this.props
     const { showArrowDropdown } = this.state;
     return (
       <div className={styles['arrow-wrapper']} onClick={this.handleClickArrow} ref={this.setArrowRef}>
         <FontAwesomeIcon icon="caret-down" />
-        {showArrowDropdown &&
+        { showArrowDropdown &&
           <div className={styles['dropdown-wrapper']}>
             <CustomDropdown
               list={selectStatusProductPage}
               inputRef={this.itemStatusRef}
               dropdownClose={this.arrowDropdownClose}
+              handleSelect={handleSelectArrow}
             />
           </div>
         }
@@ -54,6 +63,7 @@ export default class TitleBar extends PureComponent {
   };
 
   renderTag = () => {
+    const { handleChangeStatus } = this.props
     const { showTagDropdown } = this.state;
     return (
       <div className={styles['tag-wrapper']} onClick={this.handleClickTag} ref={this.setTagRef}>
@@ -64,6 +74,7 @@ export default class TitleBar extends PureComponent {
               list={itemStatusProductPage}
               inputRef={this.selectStatusRef}
               dropdownClose={this.tagDropdownClose}
+              handleSelect={handleChangeStatus}
             />
           </div>
         }

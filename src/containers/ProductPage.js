@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
-import { getOrdersPageBodyList, getOrdersTitleBarCheckboxStatus } from 'utils/selectors';
-import OrdersPage from 'components/OrdersPage';
+import { getProductsTitleBarCheckboxStatus, getProductsPageBodyList } from 'utils/selectors';
+import ProductPage from 'components/ProductPage';
 import {
   clickAllChecked,
   clickChecked,
   selectArrowOption,
   changeStatus,
-} from 'reducers/orders';
+} from 'reducers/products';
 
 const mapStateToProps = (state) => {
   return {
-    isAllChecked: getOrdersTitleBarCheckboxStatus(state),
-    tableBodyList: getOrdersPageBodyList(state),
+    isAllChecked: getProductsTitleBarCheckboxStatus(state),
+    tableBodyList: getProductsPageBodyList(state),
   };
 };
 
@@ -20,8 +20,8 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeAllChecked: (status) => () => dispatch(clickAllChecked(status)),
     handleChangeChecked: (id) => () => dispatch(clickChecked(id)),
     handleSelectArrow: (checked) => () => dispatch(selectArrowOption(checked)),
-    handleChangeStatus: (status) => () => dispatch(changeStatus(status)),
+    handleChangeStatus: (status) => () => dispatch(changeStatus(status))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OrdersPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);
