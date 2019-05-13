@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './home-page.module.scss';
+import styles from './revenue-and-cost-and-income.module.scss';
 import Card from 'components/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 

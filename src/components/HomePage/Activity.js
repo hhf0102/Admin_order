@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './home-page.module.scss';
+import styles from './activity.module.scss';
 import Card from 'components/Card';
 
 const Activity = () => {

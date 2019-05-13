@@ -12,6 +12,7 @@ export default class Button extends PureComponent {
     addItem: PropTypes.bool,
     handleDropdownStatus: PropTypes.func,
     objectId: PropTypes.number,
+    btnDropdownList: PropTypes.array,
   }
   
   state = {

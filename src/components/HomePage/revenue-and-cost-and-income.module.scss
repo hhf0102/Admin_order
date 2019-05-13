@@ -1,0 +1,52 @@
+@import 'stylesheets/variables.module.scss';
+@import 'stylesheets/mixins.module.scss';
+
+.revenue-cost-income-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+
+  > div {
+    box-sizing: border-box;
+    flex: 1 0 30%;
+    height: 150px;
+    margin-right: 20px;
+
+    &:last-child {
+      margin: 0;
+    }
+
+    .card-title-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+
+      .icon-wrapper {
+        margin-right: 8px;
+      }
+
+      .card-title {
+        @include setFont('HelveticaNeue-Medium', 16px, $black);
+      }
+    }
+
+    .card-revenue-content,
+    .card-cost-content,
+    .card-income-content {
+      @include setFont('HelveticaNeue-Bold', 36px, $black);
+      text-align: center;
+    }
+
+    .card-revenue-content {
+      color: $card-content-one;
+    }
+
+    .card-cost-content {
+      color: $card-content-two;
+    }
+
+    .card-income-content {
+      color: $card-content-three;
+    }
+  }
+}

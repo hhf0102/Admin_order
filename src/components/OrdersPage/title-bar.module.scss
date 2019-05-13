@@ -1,0 +1,66 @@
+@import 'stylesheets/variables.module.scss';
+@import 'stylesheets/mixins.module.scss';
+
+.title-wrapper {
+  display: flex;
+  margin-bottom: 16px;
+  padding-left: 16px;
+
+  .checkbox-wrapper {
+    margin-right: 5px;
+  }
+
+  .arrow-wrapper,
+  .tag-wrapper,
+  .edit-wrapper {
+    position: relative;
+
+    > svg {
+      cursor: pointer;
+    }
+
+    .dropdown-wrapper {
+      position: absolute;
+      top: 120%;
+      z-index: 99999;
+    }
+  }
+
+  .arrow-wrapper {
+    margin-right: 20px;
+  }
+
+  .edit-wrapper {
+    margin-left: auto;
+    cursor: pointer;
+    user-select: none;
+
+    > span {
+      @include setFont('HelveticaNeue-Bold', 14px, $black);
+    }
+
+    .dropdown-wrapper {
+      position: absolute;
+      right: 0;
+
+      .item-wrapper {
+        margin-bottom: 20px;
+        white-space: nowrap;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        > label {
+          display: flex;
+          cursor: pointer;
+          user-select: none;
+
+          > label {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
+}

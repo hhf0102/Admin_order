@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import styles from './home-page.module.scss';
+import styles from './transaction-and-orders.module.scss';
 import Card from 'components/Card';
 import websites from 'fakeData/websites';
 import orders from 'fakeData/orders';
@@ -9,12 +9,9 @@ import cx from 'classnames';
 import { thousandComma } from 'utils/formattedNumber';
 
 export default class TransactionAndOrders extends PureComponent {
-  constructor (props) {
-    super(props);
-    this.state = {
-      showRateTooltip: -1,
-    }
-  }
+  state = {
+    showRateTooltip: -1,
+  };
 
   handleRateMouseEnter = (idx) => () => {
     this.setState({ showRateTooltip: idx });

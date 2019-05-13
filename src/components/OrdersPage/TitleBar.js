@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import styles from './orders-page.module.scss';
+import styles from './title-bar.module.scss';
 import Checkbox from 'components/Checkbox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CustomDropdown from 'components/CustomDropdown';

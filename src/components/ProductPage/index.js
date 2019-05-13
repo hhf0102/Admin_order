@@ -1,10 +1,22 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import styles from './product-page.module.scss';
 import FadeIn from 'components/FadeIn';
 import TitleBar from './TitleBar';
 import Table from './Table';
+import AddNewProductModel from './AddNewProductModel';
 
 export default class ProductPage extends PureComponent {
+  static propTypes = {
+    isAllChecked: PropTypes.bool,
+    handleChangeAllChecked: PropTypes.func,
+    tableBodyList: PropTypes.array,
+    handleChangeChecked: PropTypes.func,
+    handleSelectArrow: PropTypes.func,
+    handleChangeStatus: PropTypes.func,
+    handleBtnStatus: PropTypes.func,
+  }
+  
   render () {
     const {
       isAllChecked,
@@ -14,6 +26,7 @@ export default class ProductPage extends PureComponent {
       handleSelectArrow,
       handleChangeStatus,
       handleBtnStatus,
+      handleClickAddNewProduct,
     } = this.props;
 
     const tableHeadList = [
@@ -34,6 +47,7 @@ export default class ProductPage extends PureComponent {
             handleChangeAllChecked={handleChangeAllChecked}
             handleSelectArrow={handleSelectArrow}
             handleChangeStatus={handleChangeStatus}
+            handleClickAddNewProduct={handleClickAddNewProduct}
           />
           <Table
             headList={tableHeadList}
@@ -41,6 +55,7 @@ export default class ProductPage extends PureComponent {
             handleChangeChecked={handleChangeChecked}
             handleBtnStatus={handleBtnStatus}
           />
+          <AddNewProductModel />
         </div>
       </FadeIn>
     );

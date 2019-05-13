@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import styles from './product-page.module.scss';
+import styles from './title-bar.module.scss';
 import Checkbox from 'components/Checkbox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CustomDropdown from 'components/CustomDropdown';
@@ -10,7 +10,10 @@ import Button from 'components/Button';
 
 export default class TitleBar extends PureComponent {
   static propTypes = {
-    handleAllChecked: PropTypes.func,
+    isAllChecked: PropTypes.bool,
+    handleChangeAllChecked: PropTypes.func,
+    handleSelectArrow: PropTypes.func,
+    handleChangeStatus: PropTypes.func,
   }
   
   state = {
@@ -83,8 +86,9 @@ export default class TitleBar extends PureComponent {
   };
 
   renderBtn = () => {
+    const { handleClickAddNewProduct } = this.props
     return (
-      <div className={styles['btn-wrapper']}>
+      <div className={styles['btn-wrapper']} onClick={handleClickAddNewProduct}>
         <Button btnText="add new product" addItem />
       </div>
     );

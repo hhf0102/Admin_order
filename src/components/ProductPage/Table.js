@@ -1,11 +1,19 @@
 import React, { PureComponent } from 'react';
+import styles from './table.module.scss';
+import PropTypes from 'prop-types';
 import Checkbox from 'components/Checkbox';
-import styles from './product-page.module.scss';
 import { thousandComma } from 'utils/formattedNumber';
 import Button from 'components/Button';
 import { btnDropdownStatusProductPage as btnDropdownList } from 'fakeData/itemStatus';
 
 export default class Table extends PureComponent {
+  static propTypes = {
+    headList: PropTypes.array,
+    bodyList: PropTypes.array,
+    handleChangeChecked: PropTypes.func,
+    handleBtnStatus: PropTypes.func,
+  }
+  
   renderThead = () => {
     const { headList } = this.props;
     return (

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from 'components/Checkbox';
-import styles from './orders-page.module.scss';
+import styles from './table.module.scss';
 import { thousandComma } from 'utils/formattedNumber';
 import Button from 'components/Button';
 import { btnItemStatus as btnDropdownList } from 'fakeData/itemStatus';

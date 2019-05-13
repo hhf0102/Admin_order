@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import styles from './home-page.module.scss';
+import styles from './title-bar.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CustomDropdown from 'components/CustomDropdown';
 import periodList from 'fakeData/periodList';

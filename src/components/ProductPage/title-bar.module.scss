@@ -1,0 +1,33 @@
+@import 'stylesheets/variables.module.scss';
+@import 'stylesheets/mixins.module.scss';
+
+.title-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-left: 16px;
+
+    .checkbox-wrapper {
+      margin-right: 5px;
+    }
+
+    .arrow-wrapper,
+    .tag-wrapper {
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+
+      .dropdown-wrapper {
+        position: absolute;
+        top: 120%;
+      }
+    }
+
+    .arrow-wrapper {
+      margin-right: 20px;
+    }
+
+    .btn-wrapper {
+      margin-left: auto;
+    }
+  }
