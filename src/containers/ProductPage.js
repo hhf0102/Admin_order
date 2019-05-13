@@ -7,7 +7,8 @@ import {
   selectArrowOption,
   changeStatus,
   changeBtnStatus,
-} from 'reducers/products';
+  clickAddNewProduct,
+} from 'actions/productsPage';
 
 const mapStateToProps = (state) => {
   return {
@@ -23,6 +24,7 @@ const mapDispatchToProps = (dispatch) => {
     handleSelectArrow: (checked) => () => dispatch(selectArrowOption(checked)),
     handleChangeStatus: (status) => () => dispatch(changeStatus(status)),
     handleBtnStatus: (status) => () => dispatch(changeBtnStatus(status)),
+    handleClickAddNewProduct: () => dispatch(clickAddNewProduct()),
   }
 }
 

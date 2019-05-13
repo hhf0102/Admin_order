@@ -7,7 +7,7 @@ import {
   selectArrowOption,
   changeStatus,
   changeBtnStatus,
-} from 'reducers/orders';
+} from 'actions/ordersPage';
 
 const mapStateToProps = (state) => {
   return {

@@ -1,5 +1,12 @@
-import createActionCreator from 'utils/createActionCreator';
 import shirt from 'assets/images/shirt.jpg';
+import {
+  CLICK_ALL_CHECKED_PRODUCTS,
+  CLICK_CHECKED_PRODUCT,
+  SELECT_ARROW_OPTION_PRODUCTS,
+  CHANGE_STATUS_PRODUCTS,
+  CHANGE_BTN_STATUS_PRODUCT,
+  CLICK_ADD_NEW_PRODUCT,
+} from 'actions';
 
 const initState = {
   titleBarCheckBoxStatus: false,
@@ -85,19 +92,6 @@ const initState = {
   ]
 };
 
-export const CLICK_ALL_CHECKED_PRODUCTS = 'CLICK_ALL_CHECKED_PRODUCTS';
-export const CLICK_CHECKED_PRODUCT = 'CLICK_CHECKED_PRODUCT';
-export const SELECT_ARROW_OPTION_PRODUCTS = 'SELECT_ARROW_OPTION_PRODUCTS';
-export const CHANGE_STATUS_PRODUCTS = 'CHANGE_STATUS_PRODUCTS';
-export const CHANGE_BTN_STATUS_PRODUCT = 'CHANGE_BTN_STATUS_PRODUCT';
-
-export const clickAllChecked = createActionCreator(CLICK_ALL_CHECKED_PRODUCTS);
-export const clickChecked = createActionCreator(CLICK_CHECKED_PRODUCT);
-export const selectArrowOption = createActionCreator(SELECT_ARROW_OPTION_PRODUCTS);
-export const changeStatus = createActionCreator(CHANGE_STATUS_PRODUCTS);
-export const changeBtnStatus = createActionCreator(CHANGE_BTN_STATUS_PRODUCT);
-
-
 export default (state = initState, action) => {
   switch (action.type) {
     case CLICK_ALL_CHECKED_PRODUCTS: return {
@@ -163,6 +157,9 @@ export default (state = initState, action) => {
         })
       ]
     };
+    case CLICK_ADD_NEW_PRODUCT: return {
+      ...state,
+    }
     default: return state;
   }
 };

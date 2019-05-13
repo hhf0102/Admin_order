@@ -1,4 +1,10 @@
-import createActionCreator from 'utils/createActionCreator';
+import {
+  CLICK_ALL_CHECKED_ORDERS,
+  CLICK_CHECKED_ORDER,
+  SELECT_ARROW_OPTION_ORDER,
+  CHANGE_STATUS_ORDER,
+  CHANGE_BTN_STATUS_ORDER,
+} from 'actions';
 
 const initState = {
   titleBarCheckBoxStatus: false,
@@ -89,17 +95,6 @@ const initState = {
   ],
 };
 
-export const CLICK_ALL_CHECKED_ORDERS = 'CLICK_ALL_CHECKED_ORDERS';
-export const CLICK_CHECKED_ORDER = 'CLICK_CHECKED_ORDER';
-export const SELECT_ARROW_OPTION_ORDER = 'SELECT_ARROW_OPTION_ORDER';
-export const CHANGE_STATUS_ORDER = 'CHANGE_STATUS_ORDER';
-export const CHANGE_BTN_STATUS_ORDER = 'CHANGE_BTN_STATUS_ORDER';
-
-export const clickAllChecked = createActionCreator(CLICK_ALL_CHECKED_ORDERS);
-export const clickChecked = createActionCreator(CLICK_CHECKED_ORDER);
-export const selectArrowOption = createActionCreator(SELECT_ARROW_OPTION_ORDER);
-export const changeStatus = createActionCreator(CHANGE_STATUS_ORDER);
-export const changeBtnStatus = createActionCreator(CHANGE_BTN_STATUS_ORDER);
 
 export default (state = initState, action) => {
   switch (action.type) {
