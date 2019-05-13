@@ -46,6 +46,16 @@
     background-color: $black;
     border-color: $black;
   }
+
+  &.save-draft-style {
+    border: 0;
+    padding-left: 0;
+    padding-right: 0;
+
+    > span {
+      color: #757575;
+    }
+  }
 }
 
 .dropdown-wrapper {

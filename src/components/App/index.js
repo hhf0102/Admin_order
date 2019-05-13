@@ -18,6 +18,8 @@ import {
   faMale,
   faTags,
   faPlus,
+  faTimes,
+  faCloudUploadAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -43,6 +45,8 @@ library.add(
   faMale,
   faTags,
   faPlus,
+  faTimes,
+  faCloudUploadAlt,
 );
 
 export default class App extends PureComponent {

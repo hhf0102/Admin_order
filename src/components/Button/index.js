@@ -27,9 +27,10 @@ export default class Button extends PureComponent {
       [styles['unpaid-style']]: btnText === 'unpaid',
       [styles['shipping-style']]: btnText === 'shipping',
       [styles['done-style']]: btnText === 'done',
-      [styles['add-product-style']]: btnText === 'add new product',
+      [styles['add-product-style']]: btnText === 'add new product' || btnText === 'add new specification' || btnText === 'publish',
       [styles['published-style']]: btnText === 'published',
       [styles['unpublished-style']]: btnText === 'unpublished',
+      [styles['save-draft-style']]: btnText === 'save draft',
     });
   }
 
