@@ -5,6 +5,7 @@ import FadeIn from 'components/FadeIn';
 import TitleBar from './TitleBar';
 import Table from './Table';
 import AddNewProductModel from './AddNewProductModel';
+import Dialog from 'containers/Dialog';
 
 export default class ProductPage extends PureComponent {
   static propTypes = {
@@ -15,6 +16,7 @@ export default class ProductPage extends PureComponent {
     handleSelectArrow: PropTypes.func,
     handleChangeStatus: PropTypes.func,
     handleBtnStatus: PropTypes.func,
+    handleClickAddNewProduct: PropTypes.func,
   }
   
   render () {
@@ -55,7 +57,10 @@ export default class ProductPage extends PureComponent {
             handleChangeChecked={handleChangeChecked}
             handleBtnStatus={handleBtnStatus}
           />
-          <AddNewProductModel />
+          <Dialog
+            name="addNewProduct"
+            component={AddNewProductModel}
+          />
         </div>
       </FadeIn>
     );

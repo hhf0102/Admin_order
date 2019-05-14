@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './custom-input.module.scss';
+import PropTypes from 'prop-types';
 
 const CustomInput = ({ name, inputType }) => {
   return (
@@ -17,6 +18,11 @@ const CustomInput = ({ name, inputType }) => {
       </div>
     </div>
   )
+}
+
+CustomInput.propTypes = {
+  name: PropTypes.string.isRequired,
+  inputType: PropTypes.oneOf(['text', 'select']).isRequired,
 }
 
 export default CustomInput;

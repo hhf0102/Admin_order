@@ -8,6 +8,15 @@ export const getProducts = (state) => {
   return state.products;
 }
 
+export const getUi = (state) => {
+  return state.ui;
+}
+
+export const getDialogName = createSelector(
+  getUi,
+  (ui) => ui.dialog
+);
+
 export const getOrdersPageBodyList = createSelector(
   getOrders,
   (orders) => {

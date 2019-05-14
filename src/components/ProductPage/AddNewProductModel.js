@@ -1,65 +1,104 @@
 import React, { PureComponent } from 'react';
 import styles from './add-new-product-model.module.scss';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CustomInput from 'components/CustomInput';
 import Button from 'components/Button';
 
 
 export default class AddNewProductModel extends PureComponent {
+  static propTypes = {
+    closeDialog: PropTypes.func,
+  }
+
+  componentDidMount () {
+    document.addEventListener('keydown', this.handleKeyDown);
+    document.addEventListener('mousedown', this.handleBlur);
+  }
+
+  componentWillUnmount () {
+    document.removeEventListener('keydown', this.handleKeyDown);
+    document.removeEventListener('mousedown', this.handleBlur);
+  }
+
+  setContainerRef = (ref) => this.containerRef = ref;
+
+  handleKeyDown = (e) => e.key === 'Escape' && this.props.closeDialog();
+  handleBlur = (e) => !this.containerRef.contains(e.target) && this.props.closeDialog();
+  
   renderTitle = () => {
+    const { closeDialog } = this.props
     return (
       <div className={styles['title-wrapper']}>
         <div>ADD NEW PRODUCT</div>
-        <div className={styles['close-icon-wrapper']}><FontAwesomeIcon icon="times" /></div>
+        <div
+          className={styles['close-icon-wrapper']}
+          onClick={closeDialog}
+        >
+          <FontAwesomeIcon icon="times" />
+        </div>
       </div>
     );
-  }
+  };
 
   renderContent = () => {
     return (
       <div className={styles['content-wrapper']}>
-        <div className={styles['left-part']}>
-          <div className={styles['image-upload-wrapper']}>
-            <div className={styles['upload-icon']}><FontAwesomeIcon icon="cloud-upload-alt" /></div>
-            <div>Drag an image or click here to upload…</div>
-          </div>
-          <div className={styles['image-wrapper']}>
-            image
-          </div>
-        </div>
-        <div className={styles['right-part']}>
-          <div className={styles['product-description-wrapper']}>
-            <div className={styles['title']}>Product Description</div>
-            <div className={styles['input-name']}><input type="input" /></div>
-            <textarea />
-          </div>
-          <div className={styles['price-wrapper']}>
-            <div className={styles['title']}>Price</div>
-            <div className={styles['inputs-wrapper']}>
-              <CustomInput name="Original" inputType="text" />
-              <CustomInput name="Discount" inputType="text" />
-            </div>
-          </div>
-          <div className={styles['specification-wrapper']}>
-            <div className={styles['title']}>Specification</div>
-            <div className={styles['inputs-wrapper']}>
-              <CustomInput name="Size" inputType="select" />
-              <CustomInput name="Color" inputType="text" />
-              <CustomInput name="Inventory" inputType="text" />
-            </div>
-            <div><Button btnText="add new specification" addItem /></div>
-          </div>
-          <div className={styles['btn-blocks']}>
-            <div><Button btnText="save draft" /></div>
-            <div><Button btnText="publish" /></div>
-          </div>
-        </div>
+        {this.renderLeftPart()}
+        {this.renderRightPart()}
       </div>
     )
-  }
+  };
+
+  renderLeftPart = () => {
+    return (
+      <div className={styles['left-part']}>
+        <div className={styles['image-upload-wrapper']}>
+          <div className={styles['upload-icon']}><FontAwesomeIcon icon="cloud-upload-alt" /></div>
+          <div>Drag an image or click here to upload…</div>
+        </div>
+        <div className={styles['image-wrapper']}>
+          image
+        </div>
+      </div>
+    );
+  };
+
+  renderRightPart = () => {
+    return (
+      <div className={styles['right-part']}>
+        <div className={styles['product-description-wrapper']}>
+          <div className={styles['title']}>Product Description</div>
+          <div className={styles['input-name']}><input type="input" /></div>
+          <textarea />
+        </div>
+        <div className={styles['price-wrapper']}>
+          <div className={styles['title']}>Price</div>
+          <div className={styles['inputs-wrapper']}>
+            <CustomInput name="Original" inputType="text" />
+            <CustomInput name="Discount" inputType="text" />
+          </div>
+        </div>
+        <div className={styles['specification-wrapper']}>
+          <div className={styles['title']}>Specification</div>
+          <div className={styles['inputs-wrapper']}>
+            <CustomInput name="Size" inputType="select" />
+            <CustomInput name="Color" inputType="text" />
+            <CustomInput name="Inventory" inputType="text" />
+          </div>
+          <div><Button btnText="add new specification" addItem /></div>
+        </div>
+        <div className={styles['btn-blocks']}>
+          <div><Button btnText="save draft" /></div>
+          <div><Button btnText="publish" /></div>
+        </div>
+      </div>
+    );
+  };
+
   render () {
     return (
-      <div className={styles['container']}>
+      <div className={styles['container']} ref={this.setContainerRef}>
         {this.renderTitle()}
         {this.renderContent()}
       </div>

@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
     handleSelectArrow: (checked) => () => dispatch(selectArrowOption(checked)),
     handleChangeStatus: (status) => () => dispatch(changeStatus(status)),
     handleBtnStatus: (status) => () => dispatch(changeBtnStatus(status)),
-    handleClickAddNewProduct: () => dispatch(clickAddNewProduct()),
+    handleClickAddNewProduct: (dialogName) => () => dispatch(clickAddNewProduct(dialogName)),
   }
 }
 

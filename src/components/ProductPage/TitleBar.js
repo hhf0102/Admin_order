@@ -14,6 +14,7 @@ export default class TitleBar extends PureComponent {
     handleChangeAllChecked: PropTypes.func,
     handleSelectArrow: PropTypes.func,
     handleChangeStatus: PropTypes.func,
+    handleClickAddNewProduct: PropTypes.func,
   }
   
   state = {
@@ -88,7 +89,7 @@ export default class TitleBar extends PureComponent {
   renderBtn = () => {
     const { handleClickAddNewProduct } = this.props
     return (
-      <div className={styles['btn-wrapper']} onClick={handleClickAddNewProduct}>
+      <div className={styles['btn-wrapper']} onClick={handleClickAddNewProduct({ dialogName: 'addNewProduct' })}>
         <Button btnText="add new product" addItem />
       </div>
     );
