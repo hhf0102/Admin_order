@@ -1,3 +1,3 @@
-const periodList = ['Daily', 'Weekly', 'Monthly', 'Yearly', 'Custom'];
+const periodList = ['Daily', 'Weekly', 'Monthly', 'Yearly'];
 
 export default periodList;
