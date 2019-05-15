@@ -51,9 +51,11 @@ export default class NavBar extends PureComponent {
   render() {
     return (
       <div className={styles['container']}>
-        {this.renderBrand()}
-        {this.renderList()}
-        <div className={styles['admin']}>Admin</div>
+        <div className={styles['wrapper']}>
+          {this.renderBrand()}
+          {this.renderList()}
+          <div className={styles['admin']}>Admin</div>
+        </div>
       </div>
     );
   }
