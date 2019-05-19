@@ -24,6 +24,15 @@ table {
     line-height: 21px;
 
     tr {
+      &.unpaid {
+        color: #9B9B9B;
+      }
+
+      &.done {
+        color: #9B9B9B;
+        text-decoration: line-through;
+      }
+
       &:nth-child(even) {
         background-color: $card-shadow;
       }

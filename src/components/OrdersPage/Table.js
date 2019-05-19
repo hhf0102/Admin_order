@@ -5,6 +5,7 @@ import styles from './table.module.scss';
 import { thousandComma } from 'utils/formattedNumber';
 import Button from 'components/Button';
 import { btnItemStatus as btnDropdownList } from 'fakeData/itemStatus';
+import cx from 'classnames';
 
 
 export default class Table extends PureComponent {
@@ -14,6 +15,11 @@ export default class Table extends PureComponent {
     handleChangeChecked: PropTypes.func,
     handleBtnStatus: PropTypes.func,
   }
+
+  getTrStyle = (status) => cx({
+    [styles['unpaid']]: status === 'unpaid',
+    [styles['done']]: status === 'done',
+  })
   
   render () {
     const {
@@ -32,7 +38,7 @@ export default class Table extends PureComponent {
         </thead>
         <tbody>
           {bodyList.map((body, idx) => (
-            <tr key={idx}>
+            <tr key={idx} className={this.getTrStyle(body.status)}>
               <td className={styles['customer']}>
                 <Checkbox
                   isChecked={body.isChecked}
