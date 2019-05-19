@@ -72,7 +72,7 @@ export default class TransactionAndOrders extends PureComponent {
               <FontAwesomeIcon icon={this.getRateArrowIcon(idx)} />{website.rate}
               {showRateTooltip === idx &&
                 <div className={this.getTooltipStyles(idx)}>
-                  <Tooltip content={this.getRateContent(idx)} />
+                  <Tooltip content={this.getRateContent(idx)} direction="top" />
                 </div>
               }
             </div>

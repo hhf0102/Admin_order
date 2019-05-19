@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import styles from './title-bar.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CustomDropdown from 'components/CustomDropdown';
-import periodList from 'fakeData/periodList';
+import periodList from 'constants/periodList';
 import { getTodayDate, getWeeklyDate, getMonthlyDate, getYearlyDate } from 'utils/customDate';
 
 export default class TitleBar extends PureComponent {

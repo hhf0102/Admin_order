@@ -4,6 +4,14 @@ import styles from './custom-dropdown.module.scss';
 import cx from 'classnames';
 
 export default class CustomDropdown extends PureComponent {
+  static propTypes = {
+    list: PropTypes.array.isRequired,
+    inputRef: PropTypes.object.isRequired,
+    dropdownClose: PropTypes.func,
+    handleSelect: PropTypes.func,
+    objectId: PropTypes.number,
+  }
+
   state = {
     mouseEnterIndex: -1,
   }
@@ -30,47 +38,30 @@ export default class CustomDropdown extends PureComponent {
   }
 
   getItemStyle = idx => {
-    const { mouseEnterIndex, keyDownIndex, selectedItemIndex } = this.state;
+    const { mouseEnterIndex } = this.state;
     return cx({
       [styles['item']]: true,
-      [styles['highlight']]: (idx === selectedItemIndex && keyDownIndex === -1 && mouseEnterIndex === -1)
-        || idx === keyDownIndex
-        || idx === mouseEnterIndex,
+      [styles['highlight']]: idx === mouseEnterIndex,
     });
   }
 
   render () {
     const { list, handleSelect, objectId } = this.props;
     return (
-      <div className={styles['container']}>
-        <div className={styles['list-wrapper']}>
-          {list.map((item, idx) => {
-            return (
-              <div
-                key={idx}
-                className={this.getItemStyle(idx)}
-                onClick={handleSelect({item, objectId})}
-                onMouseEnter={this.handleMouseEnter(idx)}
-              >
-                {item}
-              </div>
-            );
-          })}
-        </div>
+      <div className={styles['list-wrapper']}>
+        {list.map((item, idx) => {
+          return (
+            <div
+              key={idx}
+              className={this.getItemStyle(idx)}
+              onClick={handleSelect({item, objectId})}
+              onMouseEnter={this.handleMouseEnter(idx)}
+            >
+              {item}
+            </div>
+          );
+        })}
       </div>
     );
   }
 }
-
-CustomDropdown.propTypes = {
-  list: PropTypes.array.isRequired,
-  inputRef: PropTypes.object.isRequired,
-  dropdownClose: PropTypes.func,
-  handleSelect: PropTypes.func,
-  objectId: PropTypes.number,
-}
-
-CustomDropdown.defaultProps = {
-  handleSelect: () => {},
-}
-

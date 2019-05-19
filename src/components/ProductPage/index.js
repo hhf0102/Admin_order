@@ -1,70 +1,24 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import styles from './product-page.module.scss';
 import FadeIn from 'components/FadeIn';
-import TitleBar from './TitleBar';
-import Table from './Table';
+import TitleBar from 'containers/TitleBarProducts';
+import Table from 'containers/TableProducts';
 import AddNewProductModel from 'containers/AddNewProductModel';
 import Dialog from 'containers/Dialog';
 
-export default class ProductPage extends PureComponent {
-  static propTypes = {
-    isAllChecked: PropTypes.bool,
-    handleChangeAllChecked: PropTypes.func,
-    tableBodyList: PropTypes.array,
-    handleChangeChecked: PropTypes.func,
-    handleSelectArrow: PropTypes.func,
-    handleChangeStatus: PropTypes.func,
-    handleBtnStatus: PropTypes.func,
-    handleClickAddNewProduct: PropTypes.func,
-  }
-  
-  render () {
-    const {
-      isAllChecked,
-      handleChangeAllChecked,
-      tableBodyList,
-      handleChangeChecked,
-      handleSelectArrow,
-      handleChangeStatus,
-      handleBtnStatus,
-      handleClickAddNewProduct,
-    } = this.props;
+const ProductPage = () => {
+  return (
+    <FadeIn>
+      <div className={styles["container"]}>
+        <TitleBar />
+        <Table />
+        <Dialog
+          name="addNewProduct"
+          component={AddNewProductModel}
+        />
+      </div>
+    </FadeIn>
+  )
+};
 
-    const tableHeadList = [
-      'Product',
-      'Original',
-      'Discount',
-      'Size',
-      'Color',
-      'Inventory',
-      'Status',
-    ];
-
-    return (
-      <FadeIn>
-        <div className={styles["container"]}>
-          <TitleBar
-            isAllChecked={isAllChecked}
-            handleChangeAllChecked={handleChangeAllChecked}
-            handleSelectArrow={handleSelectArrow}
-            handleChangeStatus={handleChangeStatus}
-            handleClickAddNewProduct={handleClickAddNewProduct}
-          />
-          <Table
-            headList={tableHeadList}
-            bodyList={tableBodyList}
-            handleChangeChecked={handleChangeChecked}
-            handleBtnStatus={handleBtnStatus}
-          />
-          <Dialog
-            name="addNewProduct"
-            component={AddNewProductModel}
-          />
-        </div>
-      </FadeIn>
-    );
-  }
-}
-
-
+export default ProductPage;

@@ -9,6 +9,9 @@ import Button from 'components/Button';
 export default class AddNewProductModel extends PureComponent {
   static propTypes = {
     closeDialog: PropTypes.func,
+    handleAddNewSpecification: PropTypes.func,
+    specificationList: PropTypes.array,
+    handleSaveDraft: PropTypes.func,
   }
 
   componentDidMount () {

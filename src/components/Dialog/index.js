@@ -7,7 +7,7 @@ export default class Dialog extends PureComponent {
   static propTypes = {
     name: PropTypes.string,
     dialog: PropTypes.string,
-    component: PropTypes.node,
+    component: PropTypes.object,
     closeDialog: PropTypes.func,
   }
   

@@ -1,4 +1,4 @@
-export const selectArrowStatusOrdersPage = [
+export const selectStatusOrdersPage = [
   'Select All',
   'Unselect All',
   'Paid',

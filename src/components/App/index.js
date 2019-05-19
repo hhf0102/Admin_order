@@ -3,8 +3,8 @@ import styles from './app.module.scss';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import NavBar from 'components/NavBar';
 import HomePage from 'components/HomePage';
-import OrdersPage from 'containers/OrdersPage';
-import ProductPage from 'containers/ProductPage';
+import OrdersPage from 'components/OrdersPage';
+import ProductPage from 'components/ProductPage';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faCaretRight,

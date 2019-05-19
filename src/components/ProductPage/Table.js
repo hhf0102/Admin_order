@@ -4,22 +4,34 @@ import PropTypes from 'prop-types';
 import Checkbox from 'components/Checkbox';
 import { thousandComma } from 'utils/formattedNumber';
 import Button from 'components/Button';
-import { btnDropdownStatusProductPage as btnDropdownList } from 'fakeData/itemStatus';
+import { btnDropdownStatusProductPage as btnDropdownList } from 'constants/changeStatus';
+import cx from 'classnames';
 
 export default class Table extends PureComponent {
   static propTypes = {
-    headList: PropTypes.array,
-    bodyList: PropTypes.array,
     handleChangeChecked: PropTypes.func,
     handleBtnStatus: PropTypes.func,
+    tableBodyList: PropTypes.array,
   }
+
+  getTrStyle = (status) => cx({
+    [styles['unpublished']]: status === 'unpublished',
+  })
   
   renderThead = () => {
-    const { headList } = this.props;
+    const tableHeadList = [
+      'Product',
+      'Original',
+      'Discount',
+      'Size',
+      'Color',
+      'Inventory',
+      'Status',
+    ];
     return (
       <thead>
         <tr>
-          {headList.map((head, idx) => (
+          {tableHeadList.map((head, idx) => (
             <th key={idx}>{head}</th>
           ))}
         </tr>
@@ -29,15 +41,15 @@ export default class Table extends PureComponent {
 
   renderTbody = () => {
     const { 
-      bodyList,
+      tableBodyList,
       handleChangeChecked,
       handleBtnStatus,
     } = this.props;
 
     return (
       <tbody>
-        {bodyList.map(({ id, productImage, name, original, discount, information, status, isChecked }, idx) => (
-          <tr key={idx}>
+        {tableBodyList.map(({ id, productImage, name, original, discount, information, status, isChecked }, idx) => (
+          <tr key={idx} className={this.getTrStyle(status)}>
             <td className={styles['product']}>
               <Checkbox
                 isChecked={isChecked}

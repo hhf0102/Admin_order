@@ -4,14 +4,12 @@ import Checkbox from 'components/Checkbox';
 import styles from './table.module.scss';
 import { thousandComma } from 'utils/formattedNumber';
 import Button from 'components/Button';
-import { btnItemStatus as btnDropdownList } from 'fakeData/itemStatus';
+import { btnItemStatus as btnDropdownList } from 'constants/changeStatus';
 import cx from 'classnames';
-
 
 export default class Table extends PureComponent {
   static propTypes = {
-    headList: PropTypes.array,
-    bodyList: PropTypes.array,
+    tableBodyList: PropTypes.array,
     handleChangeChecked: PropTypes.func,
     handleBtnStatus: PropTypes.func,
   }
@@ -23,21 +21,30 @@ export default class Table extends PureComponent {
   
   render () {
     const {
-      headList,
-      bodyList,
+      tableBodyList,
       handleChangeChecked,
       handleBtnStatus,
     } = this.props;
+
+    const tableHeadList = [
+      'Customer',
+      'Product List',
+      'Total',
+      'Add to Cart',
+      'Check-out',
+      'Address',
+      'Status',
+    ];
 
     return (
       <table>
         <thead>
           <tr>
-            {headList.map((head, idx) => <th key={idx}>{head}</th>)}
+            {tableHeadList.map((head, idx) => <th key={idx}>{head}</th>)}
           </tr>
         </thead>
         <tbody>
-          {bodyList.map((body, idx) => (
+          {tableBodyList.map((body, idx) => (
             <tr key={idx} className={this.getTrStyle(body.status)}>
               <td className={styles['customer']}>
                 <Checkbox

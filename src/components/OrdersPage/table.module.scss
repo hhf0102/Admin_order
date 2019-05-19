@@ -25,11 +25,11 @@ table {
 
     tr {
       &.unpaid {
-        color: #9B9B9B;
+        color: $table-tr-unpaid;
       }
 
       &.done {
-        color: #9B9B9B;
+        color: $table-tr-done;
         text-decoration: line-through;
       }
 
