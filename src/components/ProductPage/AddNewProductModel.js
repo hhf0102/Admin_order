@@ -13,18 +13,15 @@ export default class AddNewProductModel extends PureComponent {
 
   componentDidMount () {
     document.addEventListener('keydown', this.handleKeyDown);
-    document.addEventListener('mousedown', this.handleBlur);
   }
 
   componentWillUnmount () {
     document.removeEventListener('keydown', this.handleKeyDown);
-    document.removeEventListener('mousedown', this.handleBlur);
   }
 
   setContainerRef = (ref) => this.containerRef = ref;
 
   handleKeyDown = (e) => e.key === 'Escape' && this.props.closeDialog();
-  handleBlur = (e) => !this.containerRef.contains(e.target) && this.props.closeDialog();
   
   renderTitle = () => {
     const { closeDialog } = this.props
@@ -65,6 +62,11 @@ export default class AddNewProductModel extends PureComponent {
   };
 
   renderRightPart = () => {
+    const {
+      handleAddNewSpecification,
+      specificationList,
+      handleSaveDraft,
+    } = this.props
     return (
       <div className={styles['right-part']}>
         <div className={styles['product-description-wrapper']}>
@@ -81,15 +83,20 @@ export default class AddNewProductModel extends PureComponent {
         </div>
         <div className={styles['specification-wrapper']}>
           <div className={styles['title']}>Specification</div>
-          <div className={styles['inputs-wrapper']}>
-            <CustomInput name="Size" inputType="select" />
-            <CustomInput name="Color" inputType="text" />
-            <CustomInput name="Inventory" inputType="text" />
-          </div>
-          <div><Button btnText="add new specification" addItem /></div>
+          { specificationList.map((item, idx) => {
+              return (
+                <div key={idx} className={styles['inputs-wrapper']}>
+                  <CustomInput name="Size" inputType="select" value={item.size} />
+                  <CustomInput name="Color" inputType="text" />
+                  <CustomInput name="Inventory" inputType="text" />
+                </div>
+              );
+            })
+          }
+          <div onClick={handleAddNewSpecification}><Button btnText="add new specification" addItem /></div>
         </div>
         <div className={styles['btn-blocks']}>
-          <div><Button btnText="save draft" /></div>
+          <div onClick={handleSaveDraft}><Button btnText="save draft" /></div>
           <div><Button btnText="publish" /></div>
         </div>
       </div>

@@ -12,6 +12,10 @@ export const getUi = (state) => {
   return state.ui;
 }
 
+export const getAddNewProductModel = (state) => {
+  return state.addNewProductModel;
+};
+
 export const getDialogName = createSelector(
   getUi,
   (ui) => ui.dialog
@@ -42,5 +46,12 @@ export const getProductsTitleBarCheckboxStatus = createSelector(
   getProducts,
   (products) => {
     return products && products.titleBarCheckBoxStatus;
+  }
+);
+
+export const getSpecificationList = createSelector(
+  getAddNewProductModel,
+  (model) => {
+    return model && model.specifications;
   }
 );

@@ -4,7 +4,7 @@ import styles from './product-page.module.scss';
 import FadeIn from 'components/FadeIn';
 import TitleBar from './TitleBar';
 import Table from './Table';
-import AddNewProductModel from './AddNewProductModel';
+import AddNewProductModel from 'containers/AddNewProductModel';
 import Dialog from 'containers/Dialog';
 
 export default class ProductPage extends PureComponent {
