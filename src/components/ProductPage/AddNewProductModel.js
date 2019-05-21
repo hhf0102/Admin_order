@@ -9,9 +9,22 @@ import Button from 'components/Button';
 export default class AddNewProductModel extends PureComponent {
   static propTypes = {
     closeDialog: PropTypes.func,
-    handleAddNewSpecification: PropTypes.func,
-    specificationList: PropTypes.array,
     handleSaveDraft: PropTypes.func,
+    selectImgSrc: PropTypes.string,
+    productTitle: PropTypes.string,
+    productContent: PropTypes.string,
+    specificationsList: PropTypes.array,
+    priceOriginal: PropTypes.string,
+    priceDiscount: PropTypes.string,
+  }
+
+  state = {
+    selectImgSrc: this.props.selectImgSrc,
+    productTitle: this.props.productTitle,
+    productContent: this.props.productContent,
+    specificationsList: this.props.specificationsList,
+    priceOriginal: this.props.priceOriginal,
+    priceDiscount: this.props.priceDiscount,
   }
 
   componentDidMount () {
@@ -25,6 +38,11 @@ export default class AddNewProductModel extends PureComponent {
   setContainerRef = (ref) => this.containerRef = ref;
 
   handleKeyDown = (e) => e.key === 'Escape' && this.props.closeDialog();
+  handleImage = (e) => {
+    this.setState({
+      selectImgSrc: URL.createObjectURL(e.target.files[0])
+    })
+  }
   
   renderTitle = () => {
     const { closeDialog } = this.props
@@ -51,55 +69,142 @@ export default class AddNewProductModel extends PureComponent {
   };
 
   renderLeftPart = () => {
+    const { selectImgSrc } = this.state;
     return (
       <div className={styles['left-part']}>
         <div className={styles['image-upload-wrapper']}>
           <div className={styles['upload-icon']}><FontAwesomeIcon icon="cloud-upload-alt" /></div>
           <div>Drag an image or click here to upload…</div>
+          <input type="file" onChange={this.handleImage} />
         </div>
         <div className={styles['image-wrapper']}>
-          image
+          {selectImgSrc && <img src={selectImgSrc} width="100%" />}
         </div>
       </div>
     );
   };
 
+  handleAddNewSpecification = () => {
+    this.setState({  
+      specificationsList: [
+        ...this.state.specificationsList,
+        { size: 's', color: '', inventory: '' }
+      ],
+    })
+  }
+
+  handleChangeTitle = (e) => {
+    this.setState({ productTitle: e.target.value });
+  }
+
+  handleChangeContent = (e) => {
+    this.setState({ productContent: e.target.value });
+  }
+
+  handleChangePriceOriginal = (e) => {
+    this.setState({ priceOriginal: e.target.value });
+  }
+
+  handleChangePriceDiscount = (e) => {
+    this.setState({ priceDiscount: e.target.value });
+  }
+
+  handleChangeColorName = (idx) => (e) => {
+    const { specificationsList } = this.state;
+    this.setState({
+      specificationsList: specificationsList.map((item, index) => {
+        if (idx === index) return { ...item, color: e.target.value }
+        return item;
+      })
+    })
+  };
+
+  handleChangeInventoryAmount = (idx) => (e) => {
+    const { specificationsList } = this.state;
+    this.setState({
+      specificationsList: specificationsList.map((item, index) => {
+        if (idx === index) return { ...item, inventory: e.target.value }
+        return item;
+      })
+    })
+  }
+
+  handleChangeSize = (idx) => (e) => {
+    const { specificationsList } = this.state;
+    this.setState({
+      specificationsList: specificationsList.map((item, index) => {
+        if (idx === index) return { ...item, size: e.target.value }
+        return item;
+      })
+    })
+  }
+
   renderRightPart = () => {
+    const { handleSaveDraft } = this.props;
     const {
-      handleAddNewSpecification,
-      specificationList,
-      handleSaveDraft,
-    } = this.props
+      specificationsList,
+      productTitle,
+      productContent,
+      priceOriginal,
+      priceDiscount,
+    } = this.state;
     return (
       <div className={styles['right-part']}>
         <div className={styles['product-description-wrapper']}>
           <div className={styles['title']}>Product Description</div>
-          <div className={styles['input-name']}><input type="input" /></div>
-          <textarea />
+          <div className={styles['input-name']}>
+            <input type="input" value={productTitle} onChange={this.handleChangeTitle} />
+          </div>
+          <textarea value={productContent} onChange={this.handleChangeContent} />
         </div>
         <div className={styles['price-wrapper']}>
           <div className={styles['title']}>Price</div>
           <div className={styles['inputs-wrapper']}>
-            <CustomInput name="Original" inputType="text" />
-            <CustomInput name="Discount" inputType="text" />
+            <CustomInput
+              name="Original"
+              inputType="text"
+              value={priceOriginal}
+              handleChange={this.handleChangePriceOriginal}
+            />
+            <CustomInput
+              name="Discount"
+              inputType="text"
+              value={priceDiscount}
+              handleChange={this.handleChangePriceDiscount}
+            />
           </div>
         </div>
         <div className={styles['specification-wrapper']}>
           <div className={styles['title']}>Specification</div>
-          { specificationList.map((item, idx) => {
+          { specificationsList.map((item, idx) => {
               return (
                 <div key={idx} className={styles['inputs-wrapper']}>
-                  <CustomInput name="Size" inputType="select" value={item.size} />
-                  <CustomInput name="Color" inputType="text" />
-                  <CustomInput name="Inventory" inputType="text" />
+                  <CustomInput
+                    name="Size"
+                    inputType="select"
+                    value={item.size}
+                    handleChange={this.handleChangeSize(idx)}
+                  />
+                  <CustomInput
+                    name="Color"
+                    inputType="text"
+                    value={item.color}
+                    handleChange={this.handleChangeColorName(idx)}
+                  />
+                  <CustomInput
+                    name="Inventory"
+                    inputType="text"
+                    value={item.inventory}
+                    handleChange={this.handleChangeInventoryAmount(idx)}
+                  />
                 </div>
               );
             })
           }
-          <div onClick={handleAddNewSpecification}><Button btnText="add new specification" addItem /></div>
+          <div onClick={this.handleAddNewSpecification}><Button btnText="add new specification" addItem /></div>
         </div>
         <div className={styles['btn-blocks']}>
-          <div onClick={handleSaveDraft}><Button btnText="save draft" /></div>
+          <div onClick={handleSaveDraft({ ...this.state })}><Button btnText="save draft" /></div>
           <div><Button btnText="publish" /></div>
         </div>
       </div>

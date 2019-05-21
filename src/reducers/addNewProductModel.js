@@ -5,9 +5,12 @@ import {
 } from 'actions';
 
 const initialState = {
-  productionDescription: {},
-  price: {},
-  specifications: [
+  selectImgSrc: null,
+  productTitle: '',
+  productContent: '',
+  priceOriginal: '',
+  priceDiscount: '',
+  specificationsList: [
     { size: 's', color: '', inventory: '' },
   ],
 };
@@ -29,6 +32,7 @@ export default (state = initialState, action) => {
     case HANDLE_SAVE_DRAFT:
       return {
         ...state,
+        ...action.payload,
       };
     default: return state;
   }

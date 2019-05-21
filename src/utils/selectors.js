@@ -49,9 +49,44 @@ export const getProductsTitleBarCheckboxStatus = createSelector(
   }
 );
 
+export const getSelectImgSrc = createSelector(
+  getAddNewProductModel,
+  (model) => {
+    return model && model.selectImgSrc;
+  }
+);
+
+export const getProductTitle = createSelector(
+  getAddNewProductModel,
+  (model) => {
+    return model && model.productTitle;
+  }
+);
+
+export const getProductContent = createSelector(
+  getAddNewProductModel,
+  (model) => {
+    return model && model.productContent;
+  }
+);
+
+export const getPriceOriginal = createSelector(
+  getAddNewProductModel,
+  (model) => {
+    return model && model.priceOriginal;
+  }
+);
+
+export const getPriceDiscount = createSelector(
+  getAddNewProductModel,
+  (model) => {
+    return model && model.priceDiscount;
+  }
+);
+
 export const getSpecificationList = createSelector(
   getAddNewProductModel,
   (model) => {
-    return model && model.specifications;
+    return model && model.specificationsList;
   }
 );
