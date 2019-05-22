@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getProductsPageBodyList } from 'utils/selectors';
+import { getProductsTableList } from 'utils/selectors';
 import Table from 'components/ProductPage/Table';
 import {
   clickChecked,
@@ -8,7 +8,7 @@ import {
 
 const mapStateToProps = (state) => {
   return {
-    tableBodyList: getProductsPageBodyList(state),
+    tableBodyList: getProductsTableList(state),
   };
 };
 

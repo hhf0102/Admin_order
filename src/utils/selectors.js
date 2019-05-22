@@ -1,92 +1,85 @@
 import { createSelector } from 'reselect';
 
-export const getOrders = (state) => {
-  return state.orders;
-}
-
-export const getProducts = (state) => {
-  return state.products;
-}
-
-export const getUi = (state) => {
-  return state.ui;
-}
-
-export const getAddNewProductModel = (state) => {
-  return state.addNewProductModel;
-};
-
-export const getDialogName = createSelector(
-  getUi,
-  (ui) => ui.dialog
+// ui
+export const getUiDialog = createSelector(
+  (state) => state.ui.dialog,
+  (dialog) => {
+    return dialog;
+  },
 );
 
-export const getOrdersPageBodyList = createSelector(
-  getOrders,
-  (orders) => {
-    return orders && orders.ordersDetails;
-  }
+
+// orders
+export const getOrdersTableList = createSelector(
+  (state) => state.orders.ordersDetails,
+  (ordersDetails) => {
+    return ordersDetails;
+  },
 );
 
 export const getOrdersTitleBarCheckboxStatus = createSelector(
-  getOrders,
-  (orders) => {
-    return orders && orders.titleBarCheckBoxStatus;
+  (state) => state.orders.titleBarCheckBoxStatus,
+  (status) => {
+    return status;
   }
 );
 
-export const getProductsPageBodyList = createSelector(
-  getProducts,
-  (products) => {
-    return products && products.productsDetails;
+
+// products
+export const getProductsTableList = createSelector(
+  (state) => state.products.productsDetails,
+  (productsDetails) => {
+    return productsDetails;
   }
 );
 
 export const getProductsTitleBarCheckboxStatus = createSelector(
-  getProducts,
-  (products) => {
-    return products && products.titleBarCheckBoxStatus;
+  (state) => state.products.titleBarCheckBoxStatus,
+  (status) => {
+    return status;
   }
 );
 
+
+// addNewProductModel
 export const getSelectImgSrc = createSelector(
-  getAddNewProductModel,
-  (model) => {
-    return model && model.selectImgSrc;
+  (state) => state.addNewProductModel.selectImgSrc,
+  (src) => {
+    return src;
   }
 );
 
 export const getProductTitle = createSelector(
-  getAddNewProductModel,
-  (model) => {
-    return model && model.productTitle;
+  (state) => state.addNewProductModel.productTitle,
+  (title) => {
+    return title;
   }
 );
 
 export const getProductContent = createSelector(
-  getAddNewProductModel,
-  (model) => {
-    return model && model.productContent;
+  (state) => state.addNewProductModel.productContent,
+  (content) => {
+    return content;
   }
 );
 
 export const getPriceOriginal = createSelector(
-  getAddNewProductModel,
-  (model) => {
-    return model && model.priceOriginal;
+  (state) => state.addNewProductModel.priceOriginal,
+  (price) => {
+    return price;
   }
 );
 
 export const getPriceDiscount = createSelector(
-  getAddNewProductModel,
-  (model) => {
-    return model && model.priceDiscount;
+  (state) => state.addNewProductModel.priceDiscount,
+  (price) => {
+    return price;
   }
 );
 
 export const getSpecificationList = createSelector(
-  getAddNewProductModel,
-  (model) => {
-    return model && model.specificationsList;
+  (state) => state.addNewProductModel.specificationsList,
+  (list) => {
+    return list;
   }
 );
