@@ -3,7 +3,7 @@ import styles from './title-bar.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CustomDropdown from 'components/CustomDropdown';
 import periodList from 'constants/periodList';
-import { getTodayDate, getWeeklyDate, getMonthlyDate, getYearlyDate } from 'utils/customDate';
+import { getDaily, getWeekly, getMonthly, getYearly } from 'utils/customDate';
 
 export default class TitleBar extends PureComponent {
   state = {
@@ -23,17 +23,19 @@ export default class TitleBar extends PureComponent {
 
   setPeriodRef = (ref) => this.periodRef = ref;
 
-  getTime = () => {
+  showDateRange = () => {
     const { dateRange } = this.state;
-    return dateRange === 'Daily'
-      ? <div>{getTodayDate()}</div>
+    return (
+      dateRange === 'Daily'
+      ? <div>{getDaily()}</div>
       : dateRange === 'Weekly'
-        ? <div>{getTodayDate()} <span className={styles['icon']}><FontAwesomeIcon icon="caret-right" /></span> {getWeeklyDate()}</div>
+        ? <div>{getDaily()} <span className={styles['icon']}><FontAwesomeIcon icon="caret-right" /></span> {getWeekly()}</div>
         : dateRange === 'Monthly'
-          ? <div>{getTodayDate()} <span className={styles['icon']}><FontAwesomeIcon icon="caret-right" /></span> {getMonthlyDate()}</div>
+          ? <div>{getDaily()} <span className={styles['icon']}><FontAwesomeIcon icon="caret-right" /></span> {getMonthly()}</div>
           : dateRange === 'Yearly'
-            ? <div>{getTodayDate()} <span className={styles['icon']}><FontAwesomeIcon icon="caret-right" /></span> {getYearlyDate()}</div>
+            ? <div>{getDaily()} <span className={styles['icon']}><FontAwesomeIcon icon="caret-right" /></span> {getYearly()}</div>
             : null
+    );
   };
 
   periodDropdownClose = () => this.setState(() => ({ showPeriodDropdown: false }));
@@ -42,7 +44,7 @@ export default class TitleBar extends PureComponent {
     const { showPeriodDropdown, dateRange } = this.state;
     return (
       <div className={styles['time-wrapper']}>
-        {this.getTime()}
+        {this.showDateRange()}
         <div className={styles['period-wrapper']} ref={this.setPeriodRef} onClick={this.handleClickPeriod}>
           {dateRange}
           <span className={styles['icon']}><FontAwesomeIcon icon="caret-down" /></span>
