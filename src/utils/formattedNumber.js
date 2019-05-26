@@ -8,6 +8,15 @@ export const thousandComma = (number) => {
   return num;
 }
 
+export const price = (str) => {
+  return Number(str).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}
+
+export const formattedInputPrice = (str) => {
+  const pattern = /\D/g
+  return str.replace(pattern, '');
+} 
+
 export const rateNumber = (numberA, numberB) => {
   return `${Math.abs(Math.round((numberA - numberB) * 100 / numberA))}%`;
 }

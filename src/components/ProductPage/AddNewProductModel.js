@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CustomInput from 'components/CustomInput';
 import Button from 'components/Button';
+import { price, formattedInputPrice } from 'utils/formattedNumber'
 
 
 export default class AddNewProductModel extends PureComponent {
@@ -102,11 +103,13 @@ export default class AddNewProductModel extends PureComponent {
   }
 
   handleChangePriceOriginal = (e) => {
-    this.setState({ priceOriginal: e.target.value });
+    const price = formattedInputPrice(e.target.value);
+    this.setState({ priceOriginal: price });
   }
 
   handleChangePriceDiscount = (e) => {
-    this.setState({ priceDiscount: e.target.value });
+    const price = formattedInputPrice(e.target.value);
+    this.setState({ priceDiscount: price });
   }
 
   handleChangeColorName = (idx) => (e) => {
@@ -163,13 +166,13 @@ export default class AddNewProductModel extends PureComponent {
             <CustomInput
               name="Original"
               inputType="text"
-              value={priceOriginal}
+              value={`$ ${price(priceOriginal)}`}
               handleChange={this.handleChangePriceOriginal}
             />
             <CustomInput
               name="Discount"
               inputType="text"
-              value={priceDiscount}
+              value={`$ ${price(priceDiscount)}`}
               handleChange={this.handleChangePriceDiscount}
             />
           </div>

@@ -15,12 +15,35 @@ export default class TitleBar extends PureComponent {
     this.setState({ dateRange: period.item, showPeriodDropdown: false });
   }
 
+  handleClickPeriod = (e) => {
+    if (this.periodRef === e.target) {
+      this.setState({ showPeriodDropdown: !this.state.showPeriodDropdown });
+    }
+  }
+
+  setPeriodRef = (ref) => this.periodRef = ref;
+
+  getTime = () => {
+    const { dateRange } = this.state;
+    return dateRange === 'Daily'
+      ? <div>{getTodayDate()}</div>
+      : dateRange === 'Weekly'
+        ? <div>{getTodayDate()} <span className={styles['icon']}><FontAwesomeIcon icon="caret-right" /></span> {getWeeklyDate()}</div>
+        : dateRange === 'Monthly'
+          ? <div>{getTodayDate()} <span className={styles['icon']}><FontAwesomeIcon icon="caret-right" /></span> {getMonthlyDate()}</div>
+          : dateRange === 'Yearly'
+            ? <div>{getTodayDate()} <span className={styles['icon']}><FontAwesomeIcon icon="caret-right" /></span> {getYearlyDate()}</div>
+            : null
+  };
+
+  periodDropdownClose = () => this.setState(() => ({ showPeriodDropdown: false }));
+
   renderTime = () => {
     const { showPeriodDropdown, dateRange } = this.state;
     return (
       <div className={styles['time-wrapper']}>
         {this.getTime()}
-        <div className={styles['period-wrapper']} onClick={this.handleClickPeriod} ref={this.setPeriodRef}>
+        <div className={styles['period-wrapper']} ref={this.setPeriodRef} onClick={this.handleClickPeriod}>
           {dateRange}
           <span className={styles['icon']}><FontAwesomeIcon icon="caret-down" /></span>
           <div className={styles['period-dropdown']}>
@@ -36,29 +59,6 @@ export default class TitleBar extends PureComponent {
       </div>
     );
   }
-
-  getTime = () => {
-    const { dateRange } = this.state;
-    return dateRange === 'Daily'
-    ? <div>{getTodayDate()}</div>
-    : dateRange === 'Weekly'
-      ? <div>{getTodayDate()} <span className={styles['icon']}><FontAwesomeIcon icon="caret-right" /></span> {getWeeklyDate()}</div>
-      : dateRange === 'Monthly'
-        ? <div>{getTodayDate()} <span className={styles['icon']}><FontAwesomeIcon icon="caret-right" /></span> {getMonthlyDate()}</div>
-        : dateRange === 'Yearly'
-          ? <div>{getTodayDate()} <span className={styles['icon']}><FontAwesomeIcon icon="caret-right" /></span> {getYearlyDate()}</div>
-          : null
-  };
-
-  periodDropdownClose = () => this.setState(() => ({ showPeriodDropdown: false }));
-
-  handleClickPeriod = (e) => {
-    if (this.periodRef === e.target) {
-      this.setState({ showPeriodDropdown: !this.state.showPeriodDropdown });
-    }
-  }
-
-  setPeriodRef = (ref) => this.periodRef = ref;
 
   render() {
     return (
