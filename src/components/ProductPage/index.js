@@ -3,7 +3,7 @@ import styles from './product-page.module.scss'
 import FadeIn from 'components/FadeIn'
 import TitleBar from 'components/ProductPage/TitleBar'
 import Table from 'components/ProductPage/Table'
-import AddNewProductModel from 'containers/AddNewProductModel'
+import AddNewProductModel from 'components/ProductPage/AddNewProductModel'
 import Dialog from 'components/Dialog'
 
 const ProductPage = () => {
