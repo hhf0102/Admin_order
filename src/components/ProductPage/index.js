@@ -4,7 +4,7 @@ import FadeIn from 'components/FadeIn'
 import TitleBar from 'components/ProductPage/TitleBar'
 import Table from 'containers/TableProducts'
 import AddNewProductModel from 'containers/AddNewProductModel'
-import Dialog from 'containers/Dialog'
+import Dialog from 'components/Dialog'
 
 const ProductPage = () => {
   return (

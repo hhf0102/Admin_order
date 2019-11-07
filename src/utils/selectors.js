@@ -1,13 +1,5 @@
 import { createSelector } from 'reselect'
 
-// ui
-export const getUiDialog = createSelector(
-  state => state.ui.dialog,
-  dialog => {
-    return dialog
-  }
-)
-
 // orders
 export const getOrdersTableList = createSelector(
   state => state.orders.ordersDetails,
