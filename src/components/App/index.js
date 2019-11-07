@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react';
-import styles from './app.module.scss';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import NavBar from 'components/NavBar';
-import HomePage from 'components/HomePage';
-import OrdersPage from 'components/OrdersPage';
-import ProductPage from 'components/ProductPage';
-import { library } from '@fortawesome/fontawesome-svg-core';
+import React, { PureComponent } from 'react'
+import styles from './app.module.scss'
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
+import NavBar from 'components/NavBar'
+import HomePage from 'components/HomePage'
+import OrdersPage from 'components/OrdersPage'
+import ProductPage from 'components/ProductPage'
+import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faCaretRight,
   faCaretDown,
@@ -19,15 +19,10 @@ import {
   faTags,
   faPlus,
   faTimes,
-  faCloudUploadAlt,
-} from '@fortawesome/free-solid-svg-icons';
+  faCloudUploadAlt
+} from '@fortawesome/free-solid-svg-icons'
 
-import {
-  faFacebook,
-  faGoogle,
-  faStripeS,
-  faWordpress,
-} from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faGoogle, faStripeS, faWordpress } from '@fortawesome/free-brands-svg-icons'
 
 library.add(
   faCaretRight,
@@ -46,26 +41,26 @@ library.add(
   faTags,
   faPlus,
   faTimes,
-  faCloudUploadAlt,
-);
+  faCloudUploadAlt
+)
 
 export default class App extends PureComponent {
   render() {
     return (
-      <BrowserRouter>
+      <HashRouter>
         <div className={styles['container']}>
           <NavBar />
           <div className={styles['content']}>
             <Switch>
-              <Route path="/home" component={HomePage} />
-              <Route path="/orders" component={OrdersPage} />
-              <Route path="/product" component={ProductPage} />
-              <Redirect to="/home" />
+              <Route path='/home' component={HomePage} />
+              <Route path='/orders' component={OrdersPage} />
+              <Route path='/product' component={ProductPage} />
+              <Redirect to='/home' />
             </Switch>
           </div>
           <div className={styles['footer']} />
         </div>
-      </BrowserRouter>
-    );
+      </HashRouter>
+    )
   }
 }
