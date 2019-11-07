@@ -1,8 +1,8 @@
-import React from 'react';
-import styles from './orders-page.module.scss';
-import FadeIn from 'components/FadeIn';
-import TitleBar from 'containers/TitleBarOrders';
-import Table from 'containers/TableOrders';
+import React from 'react'
+import styles from './orders-page.module.scss'
+import FadeIn from 'components/FadeIn'
+import TitleBar from 'components/OrdersPage/TitleBar'
+import Table from 'containers/TableOrders'
 
 const OrdersPage = () => {
   return (
@@ -15,6 +15,6 @@ const OrdersPage = () => {
       </div>
     </FadeIn>
   )
-};
+}
 
-export default OrdersPage;
+export default OrdersPage
