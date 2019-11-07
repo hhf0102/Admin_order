@@ -8,14 +8,6 @@ export const getOrdersTableList = createSelector(
   }
 )
 
-// products
-export const getProductsTableList = createSelector(
-  state => state.products.productsDetails,
-  productsDetails => {
-    return productsDetails
-  }
-)
-
 // addNewProductModel
 export const getSelectImgSrc = createSelector(
   state => state.addNewProductModel.selectImgSrc,

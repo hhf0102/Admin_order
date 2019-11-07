@@ -1,33 +1,27 @@
-import React, { PureComponent } from 'react';
-import styles from './table.module.scss';
-import PropTypes from 'prop-types';
-import Checkbox from 'components/Checkbox';
-import { thousandComma } from 'utils/formattedNumber';
-import Button from 'components/Button';
-import { btnDropdownStatusProductPage as btnDropdownList } from 'constants/changeStatus';
-import cx from 'classnames';
+import React from 'react'
+import styles from './table.module.scss'
+import PropTypes from 'prop-types'
+import Checkbox from 'components/Checkbox'
+import { thousandComma } from 'utils/formattedNumber'
+import Button from 'components/Button'
+import { btnDropdownStatusProductPage as btnDropdownList } from 'constants/changeStatus'
+import cx from 'classnames'
+import { useSelector, useDispatch } from 'react-redux'
+import { clickChecked, changeBtnStatus } from 'actions/productsPage'
 
-export default class Table extends PureComponent {
-  static propTypes = {
-    handleChangeChecked: PropTypes.func,
-    handleBtnStatus: PropTypes.func,
-    tableBodyList: PropTypes.array,
-  }
+const Table = () => {
+  const dispatch = useDispatch()
+  const tableBodyList = useSelector(state => state.products.productsDetails)
+  const handleChangeChecked = id => () => dispatch(clickChecked(id))
+  const handleBtnStatus = status => () => dispatch(changeBtnStatus(status))
 
-  getTrStyle = (status) => cx({
-    [styles['unpublished']]: status === 'unpublished',
-  })
-  
-  renderThead = () => {
-    const tableHeadList = [
-      'Product',
-      'Original',
-      'Discount',
-      'Size',
-      'Color',
-      'Inventory',
-      'Status',
-    ];
+  const getTrStyle = status =>
+    cx({
+      [styles['unpublished']]: status === 'unpublished'
+    })
+
+  const renderThead = () => {
+    const tableHeadList = ['Product', 'Original', 'Discount', 'Size', 'Color', 'Inventory', 'Status']
     return (
       <thead>
         <tr>
@@ -36,31 +30,22 @@ export default class Table extends PureComponent {
           ))}
         </tr>
       </thead>
-    );
+    )
   }
 
-  renderTbody = () => {
-    const { 
-      tableBodyList,
-      handleChangeChecked,
-      handleBtnStatus,
-    } = this.props;
-
+  const renderTbody = () => {
     return (
       <tbody>
         {tableBodyList.map(({ id, productImage, name, original, discount, information, status, isChecked }, idx) => (
-          <tr key={idx} className={this.getTrStyle(status)}>
+          <tr key={idx} className={getTrStyle(status)}>
             <td className={styles['product']}>
-              <Checkbox
-                isChecked={isChecked}
-                handleChange={handleChangeChecked(id)}
-              />
-              <img src={productImage} alt="not found" />
+              <Checkbox isChecked={isChecked} handleChange={handleChangeChecked(id)} />
+              <img src={productImage} alt='not found' />
               {name}
             </td>
             <td>${thousandComma(original)}</td>
             <td>${thousandComma(discount)}</td>
-            <td colSpan="3">
+            <td colSpan='3'>
               {information.map((product, idx) => (
                 <div key={idx} className={styles['information']}>
                   <div className={styles['size']}>{product.size}</div>
@@ -89,15 +74,21 @@ export default class Table extends PureComponent {
           </tr>
         ))}
       </tbody>
-    );
+    )
   }
 
-  render() {
-    return (
-      <table>
-        {this.renderThead()}
-        {this.renderTbody()}
-      </table>
-    );
-  }
+  return (
+    <table>
+      {renderThead()}
+      {renderTbody()}
+    </table>
+  )
 }
+
+Table.propTypes = {
+  handleChangeChecked: PropTypes.func,
+  handleBtnStatus: PropTypes.func,
+  tableBodyList: PropTypes.array
+}
+
+export default Table

@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './product-page.module.scss'
 import FadeIn from 'components/FadeIn'
 import TitleBar from 'components/ProductPage/TitleBar'
-import Table from 'containers/TableProducts'
+import Table from 'components/ProductPage/Table'
 import AddNewProductModel from 'containers/AddNewProductModel'
 import Dialog from 'components/Dialog'
 
