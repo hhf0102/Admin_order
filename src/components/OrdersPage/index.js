@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './orders-page.module.scss'
 import FadeIn from 'components/FadeIn'
 import TitleBar from 'components/OrdersPage/TitleBar'
-import Table from 'containers/TableOrders'
+import Table from 'components/OrdersPage/Table'
 
 const OrdersPage = () => {
   return (

@@ -1,13 +1,5 @@
 import { createSelector } from 'reselect'
 
-// orders
-export const getOrdersTableList = createSelector(
-  state => state.orders.ordersDetails,
-  ordersDetails => {
-    return ordersDetails
-  }
-)
-
 // addNewProductModel
 export const getSelectImgSrc = createSelector(
   state => state.addNewProductModel.selectImgSrc,
