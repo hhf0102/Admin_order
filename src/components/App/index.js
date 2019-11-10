@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import styles from './app.module.scss'
-import { HashRouter, Route, Switch } from 'react-router-dom'
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
 import NavBar from 'components/NavBar'
 import HomePage from 'components/HomePage'
 import OrdersPage from 'components/OrdersPage'
@@ -55,6 +55,7 @@ export default class App extends PureComponent {
               <Route path='/home' component={HomePage} />
               <Route path='/orders' component={OrdersPage} />
               <Route path='/product' component={ProductPage} />
+              <Redirect to='/home' />
             </Switch>
           </div>
           <div className={styles['footer']} />
