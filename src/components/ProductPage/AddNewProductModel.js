@@ -126,6 +126,14 @@ const BtnBlocks = styled.div`
   > div:nth-child(1) {
     margin-right: 15px;
   }
+
+  > div:nth-child(2) {
+    > div {
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
+  }
 `
 
 const ImageUploadWrapper = styled.div`
