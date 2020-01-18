@@ -1,39 +1,41 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import styles from './card.module.scss';
-import mapClassNameToArray from 'utils/mapClassName';
-import cx from 'classnames';
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+
+const ContainerStyle = styled.div`
+  background-color: white;
+  box-shadow: 0 0 10px 5px #ebebeb;
+  border-radius: 3px;
+  height: 100%;
+  padding: 30px 40px;
+  box-sizing: border-box;
+`
+
+const Title = styled.div`
+  font-family: 'HelveticaNeue-Bold';
+  font-size: 24px;
+  color: black;
+`
 
 export default class Card extends PureComponent {
   render() {
-    const {
-      containerClassName,
-      title,
-      content,
-    } = this.props;
-
-    const containerStyle = cx(
-      styles['container'],
-      ...mapClassNameToArray(containerClassName, styles),
-    )
+    const { title, content } = this.props
 
     return (
-      <div className={containerStyle}>
-        {title && <div className={styles['title']}>{title}</div>}
+      <ContainerStyle>
+        {title && <Title>{title}</Title>}
         {content}
-      </div>
-    );
+      </ContainerStyle>
+    )
   }
 }
 
 Card.propTypes = {
   title: PropTypes.string,
-  content: PropTypes.node,
-  containerClassName: PropTypes.string,
+  content: PropTypes.node
 }
 
 Card.defaultProps = {
   title: '',
-  content: null,
-  containerClassName: '',
+  content: null
 }

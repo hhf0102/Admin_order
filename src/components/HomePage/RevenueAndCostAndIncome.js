@@ -1,52 +1,114 @@
-import React from 'react';
-import styles from './revenue-and-cost-and-income.module.scss';
-import Card from 'components/Card';
+import React from 'react'
+import styled from 'styled-components'
+import Card from 'components/Card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+const RevenueCostIncomeWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+
+  > div {
+    box-sizing: border-box;
+    flex: 1 0 30%;
+    height: 150px;
+    margin-right: 20px;
+
+    &:last-child {
+      margin: 0;
+    }
+
+    .card-income-content {
+      color: #4a90e2;
+    }
+  }
+`
+
+const CardTitleWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+`
+
+const IconWrapper = styled.div`
+  margin-right: 8px;
+`
+
+const CardTitle = styled.div`
+  font-family: 'HelveticaNeue-Medium';
+  font-size: 16px;
+  color: black;
+`
+
+const CardContent = styled.div`
+  font-family: 'HelveticaNeue-Bold';
+  font-size: 36px;
+  color: black;
+  text-align: center;
+`
+
+const CardRevenueContent = styled(CardContent)`
+  color: #7ed321;
+`
+
+const CardCostContent = styled(CardContent)`
+  color: #d0021b;
+`
+
+const CardIncomeContent = styled(CardContent)`
+  color: #4a90e2;
+`
 
 const totalRevenueContent = () => {
   return (
     <div>
-      <div className={styles['card-title-wrapper']}>
-        <div className={styles['icon-wrapper']}><FontAwesomeIcon icon="hand-holding-usd" /></div>
-        <div className={styles['card-title']}>TOTAL REVENUE</div>
-      </div>
-      <div className={styles['card-revenue-content']}>54,540</div>
+      <CardTitleWrapper>
+        <IconWrapper>
+          <FontAwesomeIcon icon='hand-holding-usd' />
+        </IconWrapper>
+        <CardTitle>TOTAL REVENUE</CardTitle>
+      </CardTitleWrapper>
+      <CardRevenueContent>54,540</CardRevenueContent>
     </div>
-  );
-};
+  )
+}
 
 const totalCostContent = () => {
   return (
     <div>
-      <div className={styles['card-title-wrapper']}>
-        <div className={styles['icon-wrapper']}><FontAwesomeIcon icon="coins" /></div>
-        <div className={styles['card-title']}>TOTAL COST</div>
-      </div>
-      <div className={styles['card-cost-content']}>12,660</div>
+      <CardTitleWrapper>
+        <IconWrapper>
+          <FontAwesomeIcon icon='coins' />
+        </IconWrapper>
+        <CardTitle>TOTAL COST</CardTitle>
+      </CardTitleWrapper>
+      <CardCostContent>12,660</CardCostContent>
     </div>
-  );
-};
+  )
+}
 
 const netIncomeContent = () => {
   return (
     <div>
-      <div className={styles['card-title-wrapper']}>
-        <div className={styles['icon-wrapper']}><FontAwesomeIcon icon="money-bill" /></div>
-        <div className={styles['card-title']}>NET INCOME</div>
-      </div>
-      <div className={styles['card-income-content']}>41,880</div>
+      <CardTitleWrapper>
+        <IconWrapper>
+          <FontAwesomeIcon icon='money-bill' />
+        </IconWrapper>
+        <CardTitle>NET INCOME</CardTitle>
+      </CardTitleWrapper>
+      <CardIncomeContent>41,880</CardIncomeContent>
     </div>
-  );
-};
+  )
+}
 
 const RevenueAndCostAndIncome = () => {
   return (
-    <div className={styles['revenue-cost-income-wrapper']}>
+    <RevenueCostIncomeWrapper>
       <Card content={totalRevenueContent()} />
       <Card content={totalCostContent()} />
       <Card content={netIncomeContent()} />
-    </div>
-  );
-};
+    </RevenueCostIncomeWrapper>
+  )
+}
 
-export default RevenueAndCostAndIncome;
+export default RevenueAndCostAndIncome

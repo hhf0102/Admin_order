@@ -1,7 +1,35 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import styles from './custom-dropdown.module.scss';
-import cx from 'classnames';
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import cx from 'classnames'
+
+const ListWrapper = styled.div`
+  display: inline-block;
+  min-width: 125px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: white;
+  box-shadow: 1px 2px 10px 0 #9b9b9b;
+  border-radius: 2px;
+  white-space: nowrap;
+`
+
+const ItemWrapper = styled.div`
+  padding: 10px 20px;
+  cursor: pointer;
+  color: black;
+  display: flex;
+  justify-content: center;
+
+  &.highlight {
+    background-color: black;
+    color: white;
+  }
+
+  > label {
+    margin-right: 7px;
+  }
+`
 
 export default class CustomDropdown extends PureComponent {
   static propTypes = {
@@ -9,59 +37,59 @@ export default class CustomDropdown extends PureComponent {
     inputRef: PropTypes.object.isRequired,
     dropdownClose: PropTypes.func,
     handleSelect: PropTypes.func,
-    objectId: PropTypes.number,
+    objectId: PropTypes.number
   }
 
   state = {
-    mouseEnterIndex: -1,
+    mouseEnterIndex: -1
   }
 
-  componentDidMount () {
-    document.addEventListener('mousedown', this.handleBlur);
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleBlur)
   }
 
-  componentWillUnmount () {
-    document.removeEventListener('mousedown', this.handleBlur);
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleBlur)
   }
 
-  handleBlur = (e) => {
-    const { dropdownClose, inputRef } = this.props;
+  handleBlur = e => {
+    const { dropdownClose, inputRef } = this.props
     if (!inputRef.contains(e.target)) {
-      dropdownClose();
+      dropdownClose()
     }
   }
 
-  handleMouseEnter = (idx) => () => {
+  handleMouseEnter = idx => () => {
     this.setState({
-      mouseEnterIndex: idx,
-    });
+      mouseEnterIndex: idx
+    })
   }
 
   getItemStyle = idx => {
-    const { mouseEnterIndex } = this.state;
+    const { mouseEnterIndex } = this.state
     return cx({
-      [styles['item']]: true,
-      [styles['highlight']]: idx === mouseEnterIndex,
-    });
+      item: true,
+      highlight: idx === mouseEnterIndex
+    })
   }
 
-  render () {
-    const { list, handleSelect, objectId } = this.props;
+  render() {
+    const { list, handleSelect, objectId } = this.props
     return (
-      <div className={styles['list-wrapper']}>
+      <ListWrapper>
         {list.map((item, idx) => {
           return (
-            <div
+            <ItemWrapper
               key={idx}
               className={this.getItemStyle(idx)}
-              onClick={handleSelect({item, objectId})}
+              onClick={handleSelect({ item, objectId })}
               onMouseEnter={this.handleMouseEnter(idx)}
             >
               {item}
-            </div>
-          );
+            </ItemWrapper>
+          )
         })}
-      </div>
-    );
+      </ListWrapper>
+    )
   }
 }

@@ -1,24 +1,35 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styles from 'stylesheets/animations.module.scss';
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled, { keyframes } from 'styled-components'
 
-const FadeIn = ({ tag: Tag, className, children }) => {
-  return (
-    <Tag className={styles[className]}>
-      {children}
-    </Tag>
-  );
-}
+const fadeIn = keyframes`
+  0% {
+    
+    display: none;
+    opacity: 0;
+  }
 
-FadeIn.defaultProps = {
-  tag: 'div',
-  className: 'fade-in',
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 0.98;
+  }
+`
+
+const FadeInWrapper = styled.div`
+  animation: ${fadeIn} 0.5s;
+`
+
+const FadeIn = ({ children }) => {
+  return <FadeInWrapper>{children}</FadeInWrapper>
 }
 
 FadeIn.propTypes = {
-  tag: PropTypes.string,
-  className: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.node
 }
 
-export default FadeIn;
+export default FadeIn

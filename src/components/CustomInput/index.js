@@ -1,22 +1,62 @@
 import React from 'react'
-import styles from './custom-input.module.scss';
-import PropTypes from 'prop-types';
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
+
+const Container = styled.div`
+  height: 38px;
+  display: inline-flex;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  overflow: hidden;
+  box-sizing: border-box;
+`
+
+const NameWrapper = styled.div`
+  font-family: 'HelveticaNeue';
+  font-size: 16px;
+  color: #55595c;
+  flex: 1 1 50%;
+  background-color: #ebebeb;
+  padding: 8px 16px;
+  box-sizing: border-box;
+  text-align: center;
+`
+
+const ContentWrapper = styled.div`
+  flex: 1 1 50%;
+  > input,
+  > select {
+    margin: 0;
+    border: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    padding: 8px 14px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  > select {
+    cursor: pointer;
+    background-color: white;
+  }
+`
 
 const CustomInput = ({ name, inputType, value, handleChange }) => {
   return (
-    <div className={styles['container']}>
-      <div className={styles['name-wrapper']}>{name}</div>
-      <div className={styles['content-wrapper']}>
-        { inputType === 'text' && <input type="text" value={value} onChange={handleChange} /> }
-        { inputType === 'select' &&
+    <Container>
+      <NameWrapper>{name}</NameWrapper>
+      <ContentWrapper>
+        {inputType === 'text' && <input type='text' value={value} onChange={handleChange} />}
+        {inputType === 'select' && (
           <select value={value} onChange={handleChange}>
-            <option value="s">S</option>
-            <option value="m">M</option>
-            <option value="l">L</option>
+            <option value='s'>S</option>
+            <option value='m'>M</option>
+            <option value='l'>L</option>
           </select>
-        }
-      </div>
-    </div>
+        )}
+      </ContentWrapper>
+    </Container>
   )
 }
 
@@ -24,7 +64,7 @@ CustomInput.propTypes = {
   name: PropTypes.string.isRequired,
   inputType: PropTypes.oneOf(['text', 'select']).isRequired,
   value: PropTypes.string,
-  handleChange: PropTypes.func,
+  handleChange: PropTypes.func
 }
 
-export default CustomInput;
+export default CustomInput

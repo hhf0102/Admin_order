@@ -1,11 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './title-bar.module.scss'
+import styled from 'styled-components'
 import CheckboxAndTag from 'components/CheckboxAndTag'
 import { selectStatusOrdersPage } from 'constants/selectStatus'
 import { changeStatusOrdersPage } from 'constants/changeStatus'
 import { useSelector, useDispatch } from 'react-redux'
 import { clickAllChecked, selectArrowOption, changeStatus } from 'actions/ordersPage'
+
+const TitleWrapper = styled.div`
+  display: flex;
+  margin-bottom: 16px;
+  padding-left: 16px;
+`
 
 const TitleBar = () => {
   const dispatch = useDispatch()
@@ -15,7 +21,7 @@ const TitleBar = () => {
   const handleChangeStatus = status => () => dispatch(changeStatus(status))
 
   return (
-    <div className={styles['title-wrapper']}>
+    <TitleWrapper>
       <CheckboxAndTag
         isAllChecked={isAllChecked}
         handleChangeAllChecked={handleChangeAllChecked}
@@ -24,7 +30,7 @@ const TitleBar = () => {
         arrowList={selectStatusOrdersPage}
         tagList={changeStatusOrdersPage}
       />
-    </div>
+    </TitleWrapper>
   )
 }
 

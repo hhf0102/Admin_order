@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import styles from './app.module.scss'
+import styled from 'styled-components'
 import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
 import NavBar from 'components/NavBar'
 import HomePage from 'components/HomePage'
@@ -44,22 +44,36 @@ library.add(
   faCloudUploadAlt
 )
 
+const Container = styled.div`
+  height: 100%;
+`
+
+const Content = styled.div`
+  padding: 30px 42px 150px;
+`
+
+const Footer = styled.div`
+  width: 100%;
+  height: 200px;
+  background-color: black;
+`
+
 export default class App extends PureComponent {
   render() {
     return (
       <HashRouter>
-        <div className={styles['container']}>
+        <Container>
           <NavBar />
-          <div className={styles['content']}>
+          <Content>
             <Switch>
               <Route path='/home' component={HomePage} />
               <Route path='/orders' component={OrdersPage} />
               <Route path='/product' component={ProductPage} />
               <Redirect to='/home' />
             </Switch>
-          </div>
-          <div className={styles['footer']} />
-        </div>
+          </Content>
+          <Footer />
+        </Container>
       </HashRouter>
     )
   }

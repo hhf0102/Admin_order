@@ -1,16 +1,25 @@
-import React from 'react';
-import styles from './activity.module.scss';
-import Card from 'components/Card';
-import chartImage from 'assets/images/chart.jpg';
+import React from 'react'
+import styled from 'styled-components'
+import Card from 'components/Card'
+import chartImage from 'assets/images/chart.jpg'
 
-const setChartImage = () => <img src={chartImage} />;
+const CardActivity = styled.div`
+  height: 406px;
+  margin-bottom: 20px;
+
+  img {
+    width: 100%;
+    display: inline-block;
+    margin-top: 15px;
+  }
+`
 
 const Activity = () => {
   return (
-    <div className={styles['card-activity']}>
-      <Card title="Activity" content={setChartImage()} />
-    </div>
-  );
-};
+    <CardActivity>
+      <Card title='Activity' content={<img src={chartImage} />} />
+    </CardActivity>
+  )
+}
 
-export default Activity;
+export default Activity

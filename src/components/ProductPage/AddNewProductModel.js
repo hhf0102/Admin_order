@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import styles from './add-new-product-model.module.scss'
+import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CustomInput from 'components/CustomInput'
@@ -7,6 +7,163 @@ import Button from 'components/Button'
 import { price, formattedInputPrice } from 'utils/formattedNumber'
 import { useSelector, useDispatch } from 'react-redux'
 import { saveDraft } from 'actions/addNewProductModel'
+
+const Container = styled.div`
+  width: 940px;
+  height: 700px;
+  border-radius: 4px;
+  overflow: scroll;
+`
+
+const TitleWrapper = styled.div`
+  font-family: 'HelveticaNeue-Bold';
+  font-size: 24px;
+  color: white;
+  width: 100%;
+  height: 64px;
+  background-color: black;
+  padding: 20px 30px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+`
+
+const CloseIconWrapper = styled.div`
+  cursor: pointer;
+`
+
+const ContentWrapper = styled.div`
+  background-color: white;
+  padding: 30px;
+  display: flex;
+`
+
+const LeftPart = styled.div`
+  flex: 1 1 40%;
+  margin-right: 30px;
+`
+
+const RightPart = styled.div`
+  flex: 1 1 50%;
+
+  .title {
+    font-family: 'HelveticaNeue-Bold';
+    font-size: 16px;
+    color: #373a3c;
+    margin-bottom: 8px;
+  }
+`
+
+const ProductDescriptionWrapper = styled.div`
+  margin-bottom: 20px;
+
+  .input-name {
+    margin-bottom: 8px;
+
+    > input {
+      width: 100%;
+      height: 38px;
+      padding: 5px 15px;
+      box-sizing: border-box;
+      outline: none;
+      font-size: 16px;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+    }
+  }
+
+  > textarea {
+    width: 100%;
+    height: 172px;
+    box-sizing: border-box;
+    padding: 5px 15px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    outline: none;
+    font-size: 16px;
+  }
+`
+
+const PriceWrapper = styled.div`
+  margin-bottom: 20px;
+
+  > .inputs-wrapper {
+    display: flex;
+
+    > *:first-child {
+      margin-right: 50px;
+    }
+  }
+`
+
+const SpecificationWrapper = styled.div`
+  margin-bottom: 30px;
+
+  > .inputs-wrapper {
+    display: flex;
+    margin-bottom: 10px;
+
+    > *:nth-child(1),
+    > *:nth-child(2) {
+      margin-right: 15px;
+    }
+
+    > *:nth-child(1) {
+      flex: 1 1 30%;
+    }
+
+    > *:nth-child(2),
+    > *:nth-child(3) {
+      flex: 1 1 40%;
+    }
+  }
+`
+
+const BtnBlocks = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  > div:nth-child(1) {
+    margin-right: 15px;
+  }
+`
+
+const ImageUploadWrapper = styled.div`
+  font-family: 'HelveticaNeue-Bold';
+  font-size: 16px;
+  color: #757575;
+  width: 394px;
+  height: 115px;
+  background-color: #ebebeb;
+  margin-bottom: 8px;
+  padding: 25px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+
+  .upload-icon {
+  }
+
+  > input[type='file'] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+`
+
+const UploadIcon = styled.div`
+  font-size: 35px;
+`
+
+const ImageWrapper = styled.div`
+  width: 100%;
+`
 
 const AddNewProductModel = ({ closeDialog }) => {
   const dispatch = useDispatch()
@@ -69,105 +226,6 @@ const AddNewProductModel = ({ closeDialog }) => {
   const handleAddNewSpecification = () =>
     setSpecificationsList([...specificationsList, { size: 's', color: '', inventory: '' }])
 
-  const renderTitle = () => {
-    return (
-      <div className={styles['title-wrapper']}>
-        <div>ADD NEW PRODUCT</div>
-        <div className={styles['close-icon-wrapper']} onClick={closeDialog}>
-          <FontAwesomeIcon icon='times' />
-        </div>
-      </div>
-    )
-  }
-
-  const renderContent = () => {
-    return (
-      <div className={styles['content-wrapper']}>
-        {renderLeftPart()}
-        {renderRightPart()}
-      </div>
-    )
-  }
-
-  const renderLeftPart = () => {
-    return (
-      <div className={styles['left-part']}>
-        <div className={styles['image-upload-wrapper']}>
-          <div className={styles['upload-icon']}>
-            <FontAwesomeIcon icon='cloud-upload-alt' />
-          </div>
-          <div>Drag an image or click here to upload…</div>
-          <input type='file' onChange={handleImage} />
-        </div>
-        <div className={styles['image-wrapper']}>{selectImgSrc && <img src={selectImgSrc} width='100%' />}</div>
-      </div>
-    )
-  }
-
-  const renderRightPart = () => {
-    return (
-      <div className={styles['right-part']}>
-        <div className={styles['product-description-wrapper']}>
-          <div className={styles['title']}>Product Description</div>
-          <div className={styles['input-name']}>
-            <input type='input' value={productTitle} onChange={handleChangeTitle} />
-          </div>
-          <textarea value={productContent} onChange={handleChangeContent} />
-        </div>
-        <div className={styles['price-wrapper']}>
-          <div className={styles['title']}>Price</div>
-          <div className={styles['inputs-wrapper']}>
-            <CustomInput
-              name='Original'
-              inputType='text'
-              value={`$ ${price(priceOriginal)}`}
-              handleChange={handleChangePriceOriginal}
-            />
-            <CustomInput
-              name='Discount'
-              inputType='text'
-              value={`$ ${price(priceDiscount)}`}
-              handleChange={handleChangePriceDiscount}
-            />
-          </div>
-        </div>
-        <div className={styles['specification-wrapper']}>
-          <div className={styles['title']}>Specification</div>
-          {specificationsList.map((item, idx) => {
-            return (
-              <div key={idx} className={styles['inputs-wrapper']}>
-                <CustomInput name='Size' inputType='select' value={item.size} handleChange={handleChangeSize(idx)} />
-                <CustomInput
-                  name='Color'
-                  inputType='text'
-                  value={item.color}
-                  handleChange={handleChangeColorName(idx)}
-                />
-                <CustomInput
-                  name='Inventory'
-                  inputType='text'
-                  value={item.inventory}
-                  handleChange={handleChangeInventoryAmount(idx)}
-                />
-              </div>
-            )
-          })}
-          <div onClick={handleAddNewSpecification}>
-            <Button btnText='add new specification' addItem />
-          </div>
-        </div>
-        <div className={styles['btn-blocks']}>
-          <div onClick={handleSaveDraft({ ...details })}>
-            <Button btnText='save draft' />
-          </div>
-          <div>
-            <Button btnText='publish' />
-          </div>
-        </div>
-      </div>
-    )
-  }
-
   useEffect(
     () => {
       document.addEventListener('keydown', handleKeyDown)
@@ -179,10 +237,85 @@ const AddNewProductModel = ({ closeDialog }) => {
   )
 
   return (
-    <div className={styles['container']} ref={containerRef}>
-      {renderTitle()}
-      {renderContent()}
-    </div>
+    <Container ref={containerRef}>
+      <TitleWrapper>
+        <div>ADD NEW PRODUCT</div>
+        <CloseIconWrapper onClick={closeDialog}>
+          <FontAwesomeIcon icon='times' />
+        </CloseIconWrapper>
+      </TitleWrapper>
+      <ContentWrapper>
+        <LeftPart>
+          <ImageUploadWrapper>
+            <UploadIcon>
+              <FontAwesomeIcon icon='cloud-upload-alt' />
+            </UploadIcon>
+            <div>Drag an image or click here to upload…</div>
+            <input type='file' onChange={handleImage} />
+          </ImageUploadWrapper>
+          <ImageWrapper>{selectImgSrc && <img src={selectImgSrc} width='100%' />}</ImageWrapper>
+        </LeftPart>
+        <RightPart>
+          <ProductDescriptionWrapper>
+            <div className='title'>Product Description</div>
+            <div className='input-name'>
+              <input type='input' value={productTitle} onChange={handleChangeTitle} />
+            </div>
+            <textarea value={productContent} onChange={handleChangeContent} />
+          </ProductDescriptionWrapper>
+          <PriceWrapper>
+            <div className='title'>Price</div>
+            <div className='inputs-wrapper'>
+              <CustomInput
+                name='Original'
+                inputType='text'
+                value={`$ ${price(priceOriginal)}`}
+                handleChange={handleChangePriceOriginal}
+              />
+              <CustomInput
+                name='Discount'
+                inputType='text'
+                value={`$ ${price(priceDiscount)}`}
+                handleChange={handleChangePriceDiscount}
+              />
+            </div>
+          </PriceWrapper>
+          <SpecificationWrapper>
+            <div className='title'>Specification</div>
+            {specificationsList.map((item, idx) => {
+              return (
+                <div key={idx} className='inputs-wrapper'>
+                  <CustomInput name='Size' inputType='select' value={item.size} handleChange={handleChangeSize(idx)} />
+                  <CustomInput
+                    name='Color'
+                    inputType='text'
+                    value={item.color}
+                    handleChange={handleChangeColorName(idx)}
+                  />
+                  <CustomInput
+                    name='Inventory'
+                    inputType='text'
+                    value={item.inventory}
+                    handleChange={handleChangeInventoryAmount(idx)}
+                  />
+                </div>
+              )
+            })}
+            <div onClick={handleAddNewSpecification}>
+              <Button btnText='add new specification' addItem />
+            </div>
+          </SpecificationWrapper>
+          <BtnBlocks>
+            <div onClick={handleSaveDraft({ ...details })}>
+              <Button btnText='save draft' />
+            </div>
+            <div>
+              <Button btnText='publish' />
+            </div>
+          </BtnBlocks>
+        </RightPart>
+      </ContentWrapper>
+    </Container>
   )
 }
 

@@ -1,18 +1,27 @@
 import React from 'react'
-import styles from './orders-page.module.scss'
+import styled from 'styled-components'
 import FadeIn from 'components/FadeIn'
 import TitleBar from 'components/OrdersPage/TitleBar'
 import Table from 'components/OrdersPage/Table'
 
+const Container = styled.div`
+  max-width: 960px;
+  margin: auto;
+`
+
+const TableWrapper = styled.div`
+  width: 100%;
+`
+
 const OrdersPage = () => {
   return (
     <FadeIn>
-      <div className={styles['container']}>
+      <Container>
         <TitleBar />
-        <div className={styles['table-wrapper']}>
+        <TableWrapper>
           <Table />
-        </div>
-      </div>
+        </TableWrapper>
+      </Container>
     </FadeIn>
   )
 }

@@ -1,9 +1,27 @@
 import React from 'react'
-import styles from './dialog.module.scss'
+import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { useSelector, useDispatch } from 'react-redux'
 import { closeDialog } from 'actions/ui'
+
+const DialogWrapper = styled.div`
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  overflow: auto;
+
+  &.show-dialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+  }
+`
 
 const Dialog = ({ name, component: Component }) => {
   const dispatch = useDispatch()
@@ -12,11 +30,15 @@ const Dialog = ({ name, component: Component }) => {
 
   const dialogStyle = () => {
     return cx({
-      [styles['dialog']]: true,
-      [styles['show-dialog']]: dialog === name
+      dialog: true,
+      'show-dialog': dialog === name
     })
   }
-  return <div className={dialogStyle()}>{dialog === name && <Component closeDialog={handleCloseDialog} />}</div>
+  return (
+    <DialogWrapper className={dialogStyle()}>
+      {dialog === name && <Component closeDialog={handleCloseDialog} />}
+    </DialogWrapper>
+  )
 }
 
 Dialog.propTypes = {

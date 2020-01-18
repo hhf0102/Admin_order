@@ -1,22 +1,27 @@
-import React, { PureComponent } from 'react';
-import styles from './home-page.module.scss';
-import TitleBar from './TitleBar';
-import RevenueAndCostAndIncome from './RevenueAndCostAndIncome';
-import Activity from './Activity';
-import TransactionAndOrders from './TransactionAndOrders';
-import FadeIn from 'components/FadeIn';
+import React, { PureComponent } from 'react'
+import styled from 'styled-components'
+import TitleBar from './TitleBar'
+import RevenueAndCostAndIncome from './RevenueAndCostAndIncome'
+import Activity from './Activity'
+import TransactionAndOrders from './TransactionAndOrders'
+import FadeIn from 'components/FadeIn'
+
+const Container = styled.div`
+  max-width: 960px;
+  margin: auto;
+`
 
 export default class HomePage extends PureComponent {
   render() {
     return (
       <FadeIn>
-        <div className={styles['container']}>
+        <Container>
           <TitleBar />
           <RevenueAndCostAndIncome />
           <Activity />
           <TransactionAndOrders />
-        </div>
+        </Container>
       </FadeIn>
-    );
+    )
   }
 }

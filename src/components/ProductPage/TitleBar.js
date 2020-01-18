@@ -1,12 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './title-bar.module.scss'
+import styled from 'styled-components'
 import Button from 'components/Button'
 import CheckboxAndTag from 'components/CheckboxAndTag'
 import { selectStatusProductPage } from 'constants/selectStatus'
 import { changeStatusProductsPage } from 'constants/changeStatus'
 import { useSelector, useDispatch } from 'react-redux'
 import { clickAllChecked, selectArrowOption, changeStatus, clickAddNewProduct } from 'actions/productsPage'
+
+const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-left: 16px;
+`
+
+const BtnWrapper = styled.div`
+  margin-left: auto;
+`
 
 const TitleBar = () => {
   const dispatch = useDispatch()
@@ -17,7 +28,7 @@ const TitleBar = () => {
   const handleClickAddNewProduct = dialogName => () => dispatch(clickAddNewProduct(dialogName))
 
   return (
-    <div className={styles['title-wrapper']}>
+    <TitleWrapper>
       <CheckboxAndTag
         isAllChecked={isAllChecked}
         handleChangeAllChecked={handleChangeAllChecked}
@@ -26,10 +37,10 @@ const TitleBar = () => {
         arrowList={selectStatusProductPage}
         tagList={changeStatusProductsPage}
       />
-      <div className={styles['btn-wrapper']} onClick={handleClickAddNewProduct({ dialogName: 'addNewProduct' })}>
+      <BtnWrapper onClick={handleClickAddNewProduct({ dialogName: 'addNewProduct' })}>
         <Button btnText='add new product' addItem />
-      </div>
-    </div>
+      </BtnWrapper>
+    </TitleWrapper>
   )
 }
 
