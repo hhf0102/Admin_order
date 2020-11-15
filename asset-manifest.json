@@ -1,0 +1,18 @@
+{
+  "main.css": "/Admin_order/static/css/main.639b719a.chunk.css",
+  "main.js": "/Admin_order/static/js/main.d4c701fc.chunk.js",
+  "main.js.map": "/Admin_order/static/js/main.d4c701fc.chunk.js.map",
+  "runtime~main.js": "/Admin_order/static/js/runtime~main.cfdb8984.js",
+  "runtime~main.js.map": "/Admin_order/static/js/runtime~main.cfdb8984.js.map",
+  "static/js/2.4304014c.chunk.js": "/Admin_order/static/js/2.4304014c.chunk.js",
+  "static/js/2.4304014c.chunk.js.map": "/Admin_order/static/js/2.4304014c.chunk.js.map",
+  "index.html": "/Admin_order/index.html",
+  "precache-manifest.c960cb9d3081dcaffb90e676342508b7.js": "/Admin_order/precache-manifest.c960cb9d3081dcaffb90e676342508b7.js",
+  "service-worker.js": "/Admin_order/service-worker.js",
+  "static/css/main.639b719a.chunk.css.map": "/Admin_order/static/css/main.639b719a.chunk.css.map",
+  "static/media/chart.jpg": "/Admin_order/static/media/chart.0c0ed53d.jpg",
+  "static/media/checkmark.svg": "/Admin_order/static/media/checkmark.8e064a73.svg",
+  "static/media/coat.jpg": "/Admin_order/static/media/coat.34790902.jpg",
+  "static/media/jacket.jpg": "/Admin_order/static/media/jacket.ef9d991b.jpg",
+  "static/media/shirt.jpg": "/Admin_order/static/media/shirt.f2de85a7.jpg"
+}
